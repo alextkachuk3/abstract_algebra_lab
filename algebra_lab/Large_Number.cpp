@@ -45,7 +45,7 @@ Large_Number Large_Number::operator+(Large_Number &other) {
             whole_part = (this->value[i] + other.value[i]) / 10;
             result.value.insert(result.value.cbegin(),remainder);
         }
-    } else if (this->operator>(other)) {
+    } else if (*this->operator>(other)) {
         difference = thisSize - otherSize;
         for (i = thisSize - 1; i >= 0; i--) {
             remainder = (this->value[i] + other.value[i - difference]) % 10 + whole_part;
