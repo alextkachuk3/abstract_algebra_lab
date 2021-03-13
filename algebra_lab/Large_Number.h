@@ -12,14 +12,14 @@ public:
 public:
     Large_Number operator+(Large_Number &other);
     Large_Number operator-(Large_Number &other);
-    Large_Number operator>(Large_Number &other);
-    Large_Number operator<(Large_Number &other);
-    Large_Number operator==(Large_Number &other);
+    bool operator>(Large_Number &other);
+    bool operator<(Large_Number &other);
+    bool operator==(Large_Number &other);
     Large_Number operator*(Large_Number &other);
     Large_Number operator/(Large_Number &other);
 
 
-    
+
 
 };
 
