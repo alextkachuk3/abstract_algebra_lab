@@ -36,7 +36,11 @@ Large_Number Large_Number::operator-(Large_Number &other) {
     for (int i = other.value.size() - 1;i>=0 ; i--){
         int greater_index = i + this->value.size() - other.value.size();
         unsigned int iter_res = this->value[greater_index] - other.value[i];
-        result.value.insert(result.value.begin(), iter_res);
+        if (other.value.size() - i - 1 == result.value.size())
+            result.value.insert(result.value.begin(), iter_res);
+        else{
+            result.value[0] += iter_res;
+        }
         if(this->value[greater_index] < other.value[i])
             result.value.insert(result.value.begin(), (unsigned int)(0 - 1) );
     }
