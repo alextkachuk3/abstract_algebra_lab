@@ -43,7 +43,7 @@ Large_Number Large_Number::operator+(Large_Number &other) {
                 special_case = remainder / 10;
             }
             whole_part = (this->value[i] + other.value[i]) / 10;
-            result.value.push_back(remainder);
+            result.value.insert(result.value.cbegin(),remainder);
         }
     } else if (this->operator>(other)) {
         difference = thisSize - otherSize;
@@ -54,7 +54,7 @@ Large_Number Large_Number::operator+(Large_Number &other) {
                 special_case = remainder / 10;
             }
             whole_part = (this->value[i] + other.value[i - difference]) / 10;
-            result.value.push_back(remainder);
+            result.value.insert(result.value.cbegin(),remainder);
         }
     } else {
         difference = otherSize - thisSize;
@@ -65,7 +65,7 @@ Large_Number Large_Number::operator+(Large_Number &other) {
                 special_case = remainder / 10;
             }
             whole_part = special_case + (other.value[i] + this->value[i - difference]) / 10;
-            result.value.push_back(remainder);
+          result.value.insert(result.value.cbegin(),remainder);
         }
     }
     if (*this->N < (result)) {
