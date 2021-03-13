@@ -29,3 +29,16 @@ bool Large_Number::operator==(Large_Number &other) {
     return true;
 }
 
+Large_Number Large_Number::operator-(Large_Number &other) {
+    if(*this < other)
+        return (*this->N - other) + *this;
+    Large_Number result;
+    for (int i = other.value.size() - 1;i>=0 ; i--){
+        int greater_index = i + this->value.size() - other.value.size();
+        unsigned int iter_res = this->value[greater_index] - other.value[i];
+        result.value.insert(result.value.begin(), iter_res);
+        if(this->value[greater_index] < other.value[i])
+            result.value.insert(result.value.begin(), (unsigned int)(0 - 1) );
+    }
+    return result;
+}

@@ -9,7 +9,7 @@ using namespace std;
 class Large_Number {
 public:
     vector<unsigned int> value;
-    const Large_Number* N;
+    Large_Number* N;
 public:
     Large_Number operator+(Large_Number &other);
     Large_Number operator-(Large_Number &other);
