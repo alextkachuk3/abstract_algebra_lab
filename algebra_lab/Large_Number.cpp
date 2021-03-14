@@ -47,7 +47,7 @@ Large_Number Large_Number::operator+(Large_Number &other) {
             result.value[0] += iter_res;
         }
         if (this->value[greater_index] < other.value[i])
-            result.value.insert(result.value.begin(), (unsigned int) (0 1));
+            result.value.insert(result.value.begin(), (unsigned int) (1));
     }
     return result;
 }
