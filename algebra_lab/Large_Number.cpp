@@ -30,47 +30,25 @@ bool Large_Number::operator==(Large_Number &other) {
 }
 
 Large_Number Large_Number::operator+(Large_Number &other) {
-    Large_Number result;
-    int difference, i;
-    unsigned int remainder, whole_part = 0, special_case = 0;
-    int thisSize = this->value.size(), otherSize = other.value.size();
+    Large_Number result, bigger, smaller;
 
-    if (thisSize == otherSize) {
-        for (i = thisSize - 1; i >= 0; i--) {
-            remainder = (this->value[i] + other.value[i]) % 10 + whole_part;
-            if (remainder >= 10) {
-                remainder %= 10;
-                special_case = remainder / 10;
-            }
-            whole_part = (this->value[i] + other.value[i]) / 10;
-            result.value.insert(result.value.cbegin(),remainder);
-        }
-    } else if (*this->operator>(other)) {
-        difference = thisSize - otherSize;
-        for (i = thisSize - 1; i >= 0; i--) {
-            remainder = (this->value[i] + other.value[i - difference]) % 10 + whole_part;
-            if (remainder >= 10) {
-                remainder %= 10;
-                special_case = remainder / 10;
-            }
-            whole_part = (this->value[i] + other.value[i - difference]) / 10;
-            result.value.insert(result.value.cbegin(),remainder);
-        }
+    if (other.value.size() == this->value.size() || *this < other) {
+        bigger = other;
+        smaller = *this;
     } else {
-        difference = otherSize - thisSize;
-        for (i = otherSize - 1; i >= 0; i--) {
-            remainder = (other.value[i] + this->value[i - difference]) % 10 + whole_part;
-            if (remainder >= 10) {
-                remainder %= 10;
-                special_case = remainder / 10;
-            }
-            whole_part = special_case + (other.value[i] + this->value[i - difference]) / 10;
-          result.value.insert(result.value.cbegin(),remainder);
-        }
+        bigger = *this;
+        smaller = other;
     }
-    if (*this->N < (result)) {
-        return result - *this->N;
+    for (int i = smaller.value.size() - 1; i >= 0; i--) {
+        int greater_index = i + this->value.size() - other.value.size();
+        unsigned int iter_res = this->value[greater_index] + other.value[i];
+        if (other.value.size() - i - 1 == result.value.size())
+            result.value.insert(result.value.begin(), iter_res);
+        else {
+            result.value[0] += iter_res;
+        }
+        if (this->value[greater_index] < other.value[i])
+            result.value.insert(result.value.begin(), (unsigned int) (0 1));
     }
     return result;
-
 }
