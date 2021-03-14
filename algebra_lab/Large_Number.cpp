@@ -32,8 +32,8 @@ bool Large_Number::operator==(Large_Number &other) {
 Large_Number Large_Number::operator+(Large_Number &other) {
     Large_Number result, bigger, smaller;
     if (other.value.size() == this->value.size() || *this < other) {
-        bigger = other;
         smaller = *this;
+        bigger = other;
     } else {
         bigger = *this;
         smaller = other;
