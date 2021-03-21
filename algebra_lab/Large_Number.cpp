@@ -65,12 +65,24 @@ Large_Number Large_Number::multiply_by_digit(unsigned int digit) {
     }
     if(result.value[0] == 0)
         result.value.erase(result.value.begin());
+
+    return result;
 }
 
 
 Large_Number Large_Number::operator*(Large_Number &other) {
-    vector<Large_Number> adding parts;
-    for(unsigned int digit: other.value){
-
+    Large_Number result;
+    result.value.push_back((unsigned int)0);
+    for(int i = other.value.size()-1;i>=0;i--){
+        unsigned int digit = other.value[i];
+        Large_Number adding = multiply_by_digit(digit);
+        int number_shifts = other.value.size()-1 - i;
+        while (number_shifts > 0){
+            adding.value.push_back((unsigned int)0);
+            number_shifts--;
+        }
+        adding.modN();
+        result += adding;
     }
+    return result;
 }
