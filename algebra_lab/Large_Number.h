@@ -10,6 +10,8 @@ class Large_Number {
 public:
     vector<unsigned int> value;
     Large_Number* N;
+    const unsigned int halfСheck = pow(2,16);
+    const unsigned int check = pow(2,31);
 public:
     Large_Number operator+(Large_Number &other);
     Large_Number operator-(Large_Number &other);
