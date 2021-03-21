@@ -96,7 +96,7 @@ Large_Number Large_Number::gcdExtended(Large_Number a, Large_Number b, Large_Num
 
 Large_Number Large_Number::wholePart(Large_Number a, Large_Number b){
     Large_Number x;
-    x.value[0] =(unsigned int)(0);
+    x.value.push_back((unsigned int)(0));
     while( b > a){
         b = b - a;
         x.operator++();
