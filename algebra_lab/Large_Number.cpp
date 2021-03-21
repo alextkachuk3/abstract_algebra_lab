@@ -29,6 +29,7 @@ bool Large_Number::operator==(Large_Number &other) {
     return true;
 }
 
+
 void Large_Number::modN() {
     if(*this < 0)
     {
@@ -85,4 +86,35 @@ Large_Number Large_Number::operator*(Large_Number &other) {
         result += adding;
     }
     return result;
+
+Large_Number Large_Number::operator-(Large_Number &other) {
+    if(*this < other)
+        return (*this->N - other) + *this;
+    Large_Number result;
+    for (int i = other.value.size() - 1;i>=0 ; i--){
+        int greater_index = i + this->value.size() - other.value.size();
+        unsigned int iter_res = this->value[greater_index] - other.value[i];
+        if (other.value.size() - i - 1 == result.value.size())
+            result.value.insert(result.value.begin(), iter_res);
+        else{
+            result.value[0] += iter_res;
+        }
+        if(this->value[greater_index] < other.value[i])
+            result.value.insert(result.value.begin(), (unsigned int)(0 - 1) );
+    }
+    return result;
+}
+
+Large_Number Large_Number::operator++() {
+    for (int i = this->value.size() - 1; i >= 0; i--) {
+        if (this->value[i] >= this->check - 1) {
+            this->value[i] = (unsigned int) (0);
+            this->value[--i] += (unsigned int) (1);
+        }else {
+            this->value[i] += (unsigned int) (1);
+            break;
+        }
+    }
+    return *this;
+
 }
