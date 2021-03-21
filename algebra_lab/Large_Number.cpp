@@ -46,8 +46,25 @@ void Large_Number::modN() {
 
 Large_Number Large_Number::multiply_by_digit(unsigned int digit) {
     Large_Number result;
-    
-    for(unsigned int my_digit)
+    result.value.insert(result.value.begin(), (unsigned int)0);
+    for(unsigned int my_digit){
+        int index = 0;
+        result.value[index] = my_digit*digit;
+        unsigned int quotient = 0;
+        unsigned int temp = my_digit;
+        while(digit > 0 && sqrt((double )my_digit)*sqrt((double )digit) < halfСheck){
+            if(temp + my_digit < my_digit || temp + my_digit < temp)
+                quotient++;
+            temp += my_digit;
+            digit--;
+        }
+
+        if(temp + my_digit*digit < temp || temp + my_digit*digit < my_digit*digit)
+            quotient++;
+        result.value.insert(result.value.begin(), (unsigned int)quotient);
+    }
+    if(result.value[0] == 0)
+        result.value.erase(result.value.begin());
 }
 
 
