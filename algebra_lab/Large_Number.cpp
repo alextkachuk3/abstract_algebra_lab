@@ -45,7 +45,9 @@ void Large_Number::modN() {
 
 
 Large_Number Large_Number::multiply_by_digit(unsigned int digit) {
-
+    Large_Number result;
+    
+    for(unsigned int my_digit)
 }
 
 
