@@ -30,61 +30,6 @@ bool Large_Number::operator==(Large_Number &other) {
 }
 
 
-void Large_Number::modN() {
-    if (*this < 0) {
-        *this += *N;
-        modN();
-    }
-
-    if (*this > *N--) {
-        *this -= *N;
-        modN();
-    }
-}
-
-
-Large_Number Large_Number::multiply_by_digit(unsigned int digit) {
-    Large_Number result;
-    result.value.insert(result.value.begin(), (unsigned int) 0);
-    for (unsigned int my_digit) {
-        int index = 0;
-        result.value[index] = my_digit * digit;
-        unsigned int quotient = 0;
-        unsigned int temp = my_digit;
-        while (digit > 0 && sqrt((double) my_digit) * sqrt((double) digit) < halfСheck) {
-            if (temp + my_digit < my_digit || temp + my_digit < temp)
-                quotient++;
-            temp += my_digit;
-            digit--;
-        }
-
-        if (temp + my_digit * digit < temp || temp + my_digit * digit < my_digit * digit)
-            quotient++;
-        result.value.insert(result.value.begin(), (unsigned int) quotient);
-    }
-    if (result.value[0] == 0)
-        result.value.erase(result.value.begin());
-
-    return result;
-}
-
-
-Large_Number Large_Number::operator*(Large_Number &other) {
-    Large_Number result;
-    result.value.push_back((unsigned int) 0);
-    for (int i = other.value.size() - 1; i >= 0; i--) {
-        unsigned int digit = other.value[i];
-        Large_Number adding = multiply_by_digit(digit);
-        int number_shifts = other.value.size() - 1 - i;
-        while (number_shifts > 0) {
-            adding.value.push_back((unsigned int) 0);
-            number_shifts--;
-        }
-        adding.modN();
-        result += adding;
-    }
-    return result;
-
     Large_Number Large_Number::operator-(Large_Number &other) {
         if (*this < other)
             return (*this->N - other) + *this;
@@ -118,34 +63,43 @@ Large_Number Large_Number::operator*(Large_Number &other) {
     }
 
 
-    Large_Number *Large_Number::modInverse(Large_Number &other, Large_Number x) {
-        Large_Number indexA, indexB, one, res;
-        indexA.value.insert(indexA.value.cbegin(), (unsigned int) (-1));
-        indexB.value.insert(indexB.value.cbegin(), (unsigned int) (1));
-        one.value.push_back((unsigned int) (1));
+Large_Number *Large_Number::modInverse(Large_Number &other, Large_Number x) {
+    Large_Number indexA, indexB, one, res;
+    indexA.value.insert(indexA.value.cbegin(), (unsigned int) (-1));
+    indexB.value.insert(indexB.value.cbegin(), (unsigned int) (1));
+    one.value.push_back((unsigned int) (1));
 
-        Large_Number g = Large_Number::gcdExtended(other, x, &indexA, &indexB);
-
-        if (!(g == one))
-            return nullptr;
-        else {
-            res = (indexA % x + x) % x;
-        }
-        return &res;
+    Large_Number g = Large_Number::gcdExtended(other, x, &indexA, &indexB);
+    if (!(g == one))
+        return nullptr;
+    else {
+        res = (indexA + x) ;
     }
-    Large_Number Large_Number::gcdExtended(Large_Number a, Large_Number b, Large_Number *indexA, Large_Number *indexB) {
-        Large_Number zero;
-        zero.value.push_back((unsigned int) (0));
-        if (a == zero) {
-            indexA->value.push_back((unsigned int) (0));
-            indexB->value.push_back((unsigned int) (1));
-            return b;
-        }
-        Large_Number x1, y1;
-        Large_Number gcd = gcdExtended(b % a, a, &x1, &y1);
-
-        *indexA = y1 - (b / a) * x1;
-        *indexB = x1;
-
-        return gcd;
+    return &res;
+}
+Large_Number Large_Number::gcdExtended(Large_Number a, Large_Number b, Large_Number *indexA, Large_Number *indexB) {
+    Large_Number zero;
+    zero.value.push_back((unsigned int) (0));
+    if (a == zero) {
+        indexA->value.push_back((unsigned int) (0));
+        indexB->value.push_back((unsigned int) (1));
+        return b;
     }
+    Large_Number x1, y1;
+    Large_Number gcd = gcdExtended(b , a, &x1, &y1);
+
+    *indexA = y1 - (wholePart(a, b)) * x1;
+    *indexB = x1;
+
+    return gcd;
+}
+
+Large_Number Large_Number::wholePart(Large_Number a, Large_Number b){
+    Large_Number x;
+    x.value[0] =(unsigned int)(0);
+    while( b > a){
+        b = b - a;
+        x.operator++();
+    }
+    return x;
+}
