@@ -5,6 +5,7 @@
 #ifndef ZA_LARGE_NUMBER_H
 #define ZA_LARGE_NUMBER_H
 #include <vector>
+#include "cmath"
 using namespace std;
 class Large_Number {
 public:
@@ -20,6 +21,7 @@ public:
     bool operator==(Large_Number &other);
     Large_Number operator*(Large_Number &other);
     Large_Number operator/(Large_Number &other);
+
     Large_Number gcdExtended(Large_Number a, Large_Number b, Large_Number *indexA, Large_Number *indexB);
     Large_Number *modInverse(Large_Number &other, Large_Number x);
     Large_Number wholePart(Large_Number a, Large_Number b);
