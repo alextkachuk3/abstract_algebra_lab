@@ -10,6 +10,10 @@ class Large_Number {
 public:
     vector<unsigned int> value;
     const Large_Number* N;
+
+    Large_Number multiply_by_digit(unsigned int digit);
+
+    void modN();
 public:
     Large_Number operator+(Large_Number &other);
     Large_Number operator-(Large_Number &other);
@@ -18,6 +22,7 @@ public:
     bool operator==(Large_Number &other);
     Large_Number operator*(Large_Number &other);
     Large_Number operator/(Large_Number &other);
+
 
 
 

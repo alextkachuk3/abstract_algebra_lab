@@ -29,3 +29,29 @@ bool Large_Number::operator==(Large_Number &other) {
     return true;
 }
 
+void Large_Number::modN() {
+    if(*this < 0)
+    {
+        *this += *N;
+        modN();
+    }
+
+    if(*this > *N--)
+    {
+        *this -= *N;
+        modN();
+    }
+}
+
+
+Large_Number Large_Number::multiply_by_digit(unsigned int digit) {
+
+}
+
+
+Large_Number Large_Number::operator*(Large_Number &other) {
+    vector<Large_Number> adding parts;
+    for(unsigned int digit: other.value){
+
+    }
+}
