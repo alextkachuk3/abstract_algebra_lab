@@ -55,27 +55,23 @@ bool Large_Number::operator==(Large_Number &other) {
                 this->value[--i] += (unsigned int) (1);
             } else {
                 this->value[i] += (unsigned int) (1);
-                break;
+              break;
             }
         }
         return *this;
-
     }
 
-
-Large_Number *Large_Number::modInverse(Large_Number &other, Large_Number x) {
+Large_Number Large_Number::modInverse( ) {
     Large_Number indexA, indexB, one, res;
-    indexA.value.insert(indexA.value.cbegin(), (unsigned int) (-1));
-    indexB.value.insert(indexB.value.cbegin(), (unsigned int) (1));
     one.value.push_back((unsigned int) (1));
-
-    Large_Number g = Large_Number::gcdExtended(other, x, &indexA, &indexB);
-    if (!(g == one))
-        return nullptr;
-    else {
-        res = (indexA + x) ;
+    Large_Number g = Large_Number::gcdExtended( *this->N, *this, &indexA, &indexB);
+    if (!(g == one)) {
+        res.value.push_back((unsigned int) (0));
+        return res;
+    }else {
+        res = (indexA + *this);
     }
-    return &res;
+    return res;
 }
 Large_Number Large_Number::gcdExtended(Large_Number a, Large_Number b, Large_Number *indexA, Large_Number *indexB) {
     Large_Number zero;
@@ -87,10 +83,8 @@ Large_Number Large_Number::gcdExtended(Large_Number a, Large_Number b, Large_Num
     }
     Large_Number x1, y1;
     Large_Number gcd = gcdExtended(b , a, &x1, &y1);
-
     *indexA = y1 - (wholePart(a, b)) * x1;
     *indexB = x1;
-
     return gcd;
 }
 
@@ -102,4 +96,12 @@ Large_Number Large_Number::wholePart(Large_Number a, Large_Number b){
         x.operator++();
     }
     return x;
+}
+
+Large_Number Large_Number::operator/(Large_Number &other) {
+    Large_Number result, x;
+    x = other.modInverse();
+    result = *this * x;
+
+    return result;
 }
