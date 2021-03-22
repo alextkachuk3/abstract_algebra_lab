@@ -32,7 +32,9 @@ public:
     Large_Number operator/(Large_Number &other);
     Large_Number operator++();
 
-
+    Large_Number gcdExtended(Large_Number a, Large_Number b, Large_Number *indexA, Large_Number *indexB);
+    Large_Number modInverse();
+    Large_Number wholePart(Large_Number a, Large_Number b);
 
 
 };
