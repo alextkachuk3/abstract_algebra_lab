@@ -157,3 +157,20 @@ Large_Number Large_Number::operator/(Large_Number &other) {
             return result;
         }
 
+        Large_Number Large_Number::read_from_file() {
+            fstream myfile;
+            string line;
+            int x;
+            Large_Number number;
+            myfile.open ("file.txt");
+            if ((myfile.is_open())) {
+                while ( !myfile.eof() )
+                {
+                    getline (myfile,line);
+                    x = atoi( line.c_str() );
+                    number.value.push_back((unsigned  int)(x));
+                }
+            }
+            myfile.close();
+            return number;
+        }
