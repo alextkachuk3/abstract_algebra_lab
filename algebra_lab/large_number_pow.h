@@ -9,4 +9,6 @@ namespace ln//large number
 	unsigned length(unsigned number, unsigned base);
 	unsigned gcdExtended(unsigned numberR, unsigned numberN, unsigned& rInv, unsigned& nInv);
 	std::vector<unsigned> decomposeExp(unsigned exp);
+	unsigned montgomeryMultiplication(unsigned montNumber1, unsigned montNumber2,
+		unsigned numberR, unsigned modulus, unsigned modulusInv);
 }

@@ -21,7 +21,21 @@ namespace ln
 		std::vector<unsigned> montNumbers(length(exp, 2));//for x^1, x^2, x^4, x^8 ... x^allExp[allExp.size() - 1]
 		if (montNumbers.size() == 0) return 1;
 		auto montNumber = (number * numberR) % modulus;//montgomery form
-		return number;
+		montNumbers[0] = montNumber;
+		for (std::size_t i = 1; i < montNumbers.size(); i++)
+		{
+			montNumbers[i] = montgomeryMultiplication(montNumber,
+				montNumber, numberR, modulus, modulusInv);
+			montNumber = montNumbers[i];
+		}
+		auto res = montNumbers[length(allExp[0], 2) - 1];
+		for (std::size_t i = 1; i < allExp.size(); i++)
+		{
+			res = montgomeryMultiplication(res,
+				montNumbers[length(allExp[i], 2) - 1], numberR, modulus, modulusInv);
+		}
+
+		return (res * rInv % modulus);
 	}
 	unsigned length(unsigned number, unsigned base)
 	{
@@ -63,5 +77,14 @@ namespace ln
 			part /= 2;
 		}
 		return arr;
+	}
+	unsigned montgomeryMultiplication(unsigned montNumber1, unsigned montNumber2,
+		unsigned numberR, unsigned modulus, unsigned modulusInv)
+	{
+		auto numberT = montNumber1 * montNumber2;
+		auto tModulus = numberT % numberR;
+		auto numberU = (numberT + ((modulusInv * tModulus) % numberR) * modulus) / numberR;
+		while (numberU > modulus) numberU = numberU - modulus;
+		return numberU;//in montgomery form
 	}
 }
