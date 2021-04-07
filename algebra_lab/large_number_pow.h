@@ -8,4 +8,5 @@ namespace ln//large number
 	unsigned pow(const unsigned& number, const unsigned& exp);
 	unsigned length(unsigned number, unsigned base);
 	unsigned gcdExtended(unsigned numberR, unsigned numberN, unsigned& rInv, unsigned& nInv);
+	std::vector<unsigned> decomposeExp(unsigned exp);
 }
