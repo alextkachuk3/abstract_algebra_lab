@@ -80,8 +80,10 @@ Large_Number Large_Number::wholePart(Large_Number a, Large_Number b) {
 
 Large_Number Large_Number::operator/(Large_Number &other) {
     Large_Number result, x;
-    x = other.modInverse();
-    result = *this * x;
+    x.value = other.modInverse().value;
+    result.value = this->operator*(x).value;
+    return result;
+}
 
 
     void Large_Number::modN() {
