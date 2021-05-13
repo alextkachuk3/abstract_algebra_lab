@@ -120,7 +120,7 @@ void Large_Number::modN() {
 Large_Number Large_Number::multiply_by_digit(unsigned int digit) {
     Large_Number result;
     result.value.insert(result.value.begin(), (unsigned int) 0);
-    for (unsigned int my_digit) {
+    for (unsigned int my_digit: value) {
         int index = 0;
         result.value[index] = my_digit * digit;
         unsigned int quotient = 0;
