@@ -22,7 +22,7 @@ bool Large_Number::operator>(Large_Number &other) {
 }
 
 bool Large_Number::operator==(Large_Number &other) {
-    if (*this > other or *this < other)
+    if (*this > other || *this < other)
         return false;
     return true;
 }
