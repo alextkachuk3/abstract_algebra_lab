@@ -17,7 +17,6 @@ bool Large_Number::operator<(Large_Number &other) {
     }
     return false;
 }
-
 bool Large_Number::operator>(Large_Number &other) {
     return other < *this;
 }
@@ -85,6 +84,8 @@ Large_Number Large_Number::operator/(Large_Number &other) {
     result.value = this->operator*(x).value;
     return result;
 }
+
+
 
 void Large_Number::modN() {
     if (*this < 0) {
