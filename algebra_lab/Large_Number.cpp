@@ -82,19 +82,20 @@ Large_Number Large_Number::operator/(Large_Number &other) {
     Large_Number result, x;
     x = other.modInverse();
     result = *this * x;
+    return result;
+}
 
-
-    void Large_Number::modN() {
-        if (*this < 0) {
-            *this += *N;
-            modN();
-        }
-
-        if (*this > *N--) {
-            *this -= *N;
-            modN();
-        }
+void Large_Number::modN() {
+    if (*this < 0) {
+        *this += *N;
+        modN();
     }
+
+    if (*this > *N--) {
+        *this -= *N;
+        modN();
+    }
+}
 
 
     Large_Number Large_Number::multiply_by_digit(unsigned int digit) {
