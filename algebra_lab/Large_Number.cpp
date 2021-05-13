@@ -85,8 +85,6 @@ Large_Number Large_Number::operator/(Large_Number &other) {
     return result;
 }
 
-
-
     void Large_Number::modN() {
         if (*this < 0) {
             *this += *N;
