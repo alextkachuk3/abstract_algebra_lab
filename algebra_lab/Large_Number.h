@@ -20,7 +20,7 @@ public:
 
     void modN();
 
-    
+
     const unsigned int halfСheck = pow(2, 16);
     const unsigned int check = pow(2, 31);
 
@@ -47,6 +47,7 @@ public:
 
     Large_Number wholePart(Large_Number a, Large_Number b);
 
+    bool operator<(int i);
 
 };
 
