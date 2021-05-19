@@ -1,9 +1,12 @@
-#include <iostream>
+﻿#include <iostream>
+#include "algebra_lab/Sqrt.h"
+#include "algebra_lab/Large_Number.h"
+#include "algebra_lab/large_number_pow.h"
 
-int main() {
+using namespace std;
 
-    unsigned int a = 0;
-    a -= 13;
-    std::cout << (unsigned int)(0 - 1) << std::endl;
-    return 0;
+int main()
+{
+	cout << "Hello CMake." << endl;
+	return 0;
 }
