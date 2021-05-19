@@ -4,11 +4,13 @@
 #include <vector>
 namespace ln//large number
 {
-	Large_Number pow(const Large_Number& number, const Large_Number& exp);
-	unsigned pow(const unsigned& number, const unsigned& exp);
-	unsigned length(unsigned number, unsigned base);
-	unsigned gcdExtended(unsigned numberR, unsigned numberN, unsigned& rInv, unsigned& nInv);
-	std::vector<unsigned> decomposeExp(unsigned exp);
-	unsigned montgomeryMultiplication(unsigned montNumber1, unsigned montNumber2,
-		unsigned numberR, unsigned modulus, unsigned modulusInv);
+	using Number = unsigned long long;
+	Number powNumber(const Number& number, const Number& exp);
+	std::vector<Number> decomposeExp(Number exp);
+	Number degree_of_two(const Number& exp);
+	Number montgomeryMultiplication(const Number& montNumber1, const Number& montNumber2,
+		const Number& numberR, const Number& modulus, const Number& modulusInv);
+	unsigned length(Number number, const Number& base);
+	Number gcdExtended(const Number& numberR, const Number& numberN, Number& rInv, Number& nInv);
+
 }
