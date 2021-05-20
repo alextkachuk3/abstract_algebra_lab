@@ -73,7 +73,6 @@ Large_Number Large_Number::operator-(const Large_Number &other) const {
     return result;
 }
 
-
 Large_Number Large_Number::operator++() {
     for (int i = this->value.size() - 1; i >= 0; i--) {
         if (this->value[i] >= this->check - 1) {
@@ -229,4 +228,8 @@ Large_Number Large_Number::operator%(const Large_Number &other) const {
     auto product = quotient * other;
     return *this - product;
 
+}
+
+Large_Number::Large_Number(unsigned int number) {
+    (*this).value.push_back(number);
 }

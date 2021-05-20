@@ -27,6 +27,8 @@ public:
 public:
     Large_Number();
 
+    Large_Number(unsigned int number);
+
     Large_Number(const Large_Number* other);
 
     Large_Number operator+(const Large_Number &other) const;
