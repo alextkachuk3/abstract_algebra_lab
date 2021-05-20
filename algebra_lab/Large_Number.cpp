@@ -235,16 +235,27 @@ Large_Number::Large_Number(unsigned int number) {
 }
 
 Large_Number::Large_Number(string s) {
-    vector<string> vec;
-    string max_digit = "4294967296";
-    string max_digit2 = "8589934592";
-    for (int i = s.length() - 1 - max_digit.length();i >= 0; i-= max_digit.length()){
-        string temp = s.substr(i,i + max_digit.length());
-        if(temp.compare(max_digit) > 0){}
-        else{
-            vec.insert(vec.begin(),temp);
+
+
+    do{
+
+        string digit_str;
+        if(s.length() >= 8){
+            digit_str = s.substr(s.length() - 8, 8);
+            s.erase(s.length() - 8,8);
         }
-    }
+        else{
+            digit_str = s;
+            s.clear();
+        }
+        unsigned int x;
+        stringstream ss;
+        ss << hex << digit_str;
+        ss >> x;
+
+        value.insert(value.begin(), x);
+
+    }while (s.length() > 0);
 }
 
 Large_Number Large_Number::operator++(int) {
@@ -252,24 +263,3 @@ Large_Number Large_Number::operator++(int) {
     ++(*this);
     return temp;
 }
-
-//Large_Number::Large_Number(string s) {
-//    vector<string> vec;
-//    string max_digit = to_string(UINT32_MAX);
-//    for (int i = s.length() - 1 - max_digit.length();i >= 0; i-= max_digit.length()){
-//        string temp = s.substr(i,i + max_digit.length());
-//        if(temp.compare(max_digit) > 0){}
-//        else{
-//            vec.push_back(temp);
-//            swap(vec[0],vec[vec.size()])
-//            vec.insert(vec.begin(),temp)
-//        }
-//    }
-//}
-
-//bool Large_Number::compare_strings(string s1, string s2) {
-//    for(int i = 0;i<s1.length();i++){
-//        if s1[i]
-//    }
-//    return false;
-//}
