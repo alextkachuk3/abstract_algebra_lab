@@ -10,13 +10,14 @@
 #include <string>
 #include <sstream>
 #include <iomanip>
+
 using namespace std;
 
 class Large_Number {
 public:
     vector<unsigned int> value;
 
-    const Large_Number *N;
+    const Large_Number *N = new Large_Number("57970cd7e29336813af");
 
     Large_Number multiply_by_digit(unsigned int digit);
 
