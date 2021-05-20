@@ -21,23 +21,23 @@ public:
     void modN();
 
 
-    //const unsigned int halfСheck = pow(2, 16);
-    //const unsigned int check = pow(2, 31);
+    const unsigned int halfCheck = pow(2, 16);
+    const unsigned int check = pow(2, 31);
 
 public:
     Large_Number();
 
     Large_Number(const Large_Number* other);
 
-    Large_Number operator+(Large_Number &other);
+    Large_Number operator+(const Large_Number &other) const;
 
-    Large_Number operator-(Large_Number &other);
+    Large_Number operator-(const Large_Number &other) const;
 
-    bool operator>(Large_Number &other);
+    bool operator>(const Large_Number &other) const;
 
-    bool operator<(Large_Number &other);
+    bool operator<(const Large_Number &other) const;
 
-    bool operator==(Large_Number &other);
+    bool operator==(const Large_Number &other) const;
 
     Large_Number operator*(Large_Number &other);
 
