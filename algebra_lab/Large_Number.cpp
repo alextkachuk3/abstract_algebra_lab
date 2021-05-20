@@ -263,3 +263,15 @@ Large_Number Large_Number::operator++(int) {
     ++(*this);
     return temp;
 }
+
+std::string Large_Number::to_string() const  {
+    std::stringstream stream;
+    for (auto &i : value) {
+        stream << std::setfill('0')
+               << std::setw(sizeof(int32_t)*2)
+               << std::hex << i;
+    }
+    auto result = stream.str();
+    result.erase(0, std::min(result.find_first_not_of('0'), result.size() - 1));
+    return result;
+}
