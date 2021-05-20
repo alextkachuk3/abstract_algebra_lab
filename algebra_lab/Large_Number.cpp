@@ -5,14 +5,22 @@
 #include "Large_Number.h"
 
 bool Large_Number::operator<(const Large_Number &other) const {
-    if (this->value.size() > other.value.size())
+    auto temp1 = *this;
+    auto temp2 = other;
+    while (temp2.value[0] == 0 && temp2.value.size() > 1){
+        temp2.value.erase(temp2.value.begin());
+    }
+    while (temp1.value[0] == 0 && temp1.value.size() > 1){
+        temp1.value.erase(temp1.value.begin());
+    }
+    if (temp1.value.size() > temp2.value.size())
         return false;
-    if (this->value.size() < other.value.size())
+    if (temp1.value.size() < temp2.value.size())
         return true;
-    for (int i = 0; i < this->value.size(); i++) {
-        if (this->value[i] > other.value[i])
+    for (int i = 0; i < temp1.value.size(); i++) {
+        if (temp1.value[i] > temp2.value[i])
             return false;
-        if (this->value[i] < other.value[i])
+        if (temp1.value[i] < temp2.value[i])
             return true;
     }
     return false;
@@ -55,6 +63,7 @@ Large_Number Large_Number::operator+(const Large_Number &other) const {
             result.value.insert(result.value.begin(), bigger.value[i]);
         }
     }
+    result.modN();
     return result;
 }
 
@@ -84,6 +93,7 @@ Large_Number Large_Number::operator-(const Large_Number &other) const {
             result.value.insert(result.value.begin(), this->value[i]);
         }
     }
+    result.modN();
     return result;
 }
 
@@ -103,7 +113,7 @@ Large_Number Large_Number::operator++() {
 Large_Number Large_Number::modInverse() {
     Large_Number indexA, indexB, one, res;
     one.value.push_back((unsigned int) (1));
-    Large_Number g = Large_Number::gcdExtended(*this->N, *this, &indexA, &indexB);
+    Large_Number g = Large_Number::gcdExtended( *this,*this->N, &indexA, &indexB);
     if (!(g == one)) {
         res.value.push_back((unsigned int) (0));
         return res;
@@ -122,20 +132,28 @@ Large_Number Large_Number::gcdExtended(Large_Number a, Large_Number b, Large_Num
         return b;
     }
     Large_Number x1, y1;
-    Large_Number gcd = gcdExtended(b - wholePart(a,b)*a, a, &x1, &y1);
-    *indexA = y1 - (wholePart(a, b)) * x1;
+    Large_Number temp = b - (wholePart(a,b)*a);
+    Large_Number gcd = Large_Number::gcdExtended(temp, a, &x1, &y1);
+    *indexA = y1 - ((wholePart(a, b)) * x1);
     *indexB = x1;
     return gcd;
 }
 
 Large_Number Large_Number::wholePart(Large_Number a, Large_Number b) {
     Large_Number x;
-    x.value.push_back((unsigned int) (0));
-    while (b > a) {
-        b = b - a;
-        x.operator++();
+    while (b.value[0] == 0 && b.value.size() > 1){
+        b.value.erase(b.value.begin());
     }
-    return x;
+    if(a < b){
+        x.value.push_back(1);
+        Large_Number temp = a;
+        while(temp < b){
+            temp = temp.multiply_by_digit(2);
+            x = x.multiply_by_digit(2);
+        }
+        return x - wholePart(a,temp - b);
+    } else return Large_Number(0);
+
 }
 
 Large_Number Large_Number::operator/(const Large_Number &other) const {
@@ -164,20 +182,23 @@ void Large_Number::modN() {
 Large_Number Large_Number::multiply_by_digit(unsigned int digit) {
     Large_Number result;
     result.value.insert(result.value.begin(), (unsigned int) 0);
-    for (unsigned int my_digit: value) {
-        int index = 0;
-        result.value[index] = my_digit * digit;
-        unsigned int quotient = 0;
-        unsigned int temp = my_digit;
-        while (digit > 0 && sqrt((double) my_digit) * sqrt((double) digit) < halfCheck) {
-            if (temp + my_digit < my_digit || temp + my_digit < temp)
-                quotient++;
-            temp += my_digit;
-            digit--;
-        }
+    for (int i = value.size() - 1;i>=0;i--) {
+        unsigned int my_digit = value[i];
+        result.value[0] += my_digit * digit;
 
-        if (temp + my_digit * digit < temp || temp + my_digit * digit < my_digit * digit)
-            quotient++;
+        uint64_t temp = (uint64_t) my_digit;
+        uint64_t temp2 = (uint64_t) digit;
+        unsigned int quotient =(unsigned int) (((temp2*temp) - (uint64_t)(my_digit*digit))/pow(2,32));
+//        while (temp2 > 0 && sqrt((double) my_digit) * sqrt((double) temp2) < halfCheck) {
+//            if (temp + my_digit < my_digit || temp + my_digit < temp)
+//                quotient++;
+//            temp += my_digit;
+//            temp2--;
+//        }
+//
+//        if (temp + my_digit * digit < temp || temp + my_digit * digit < my_digit * digit)
+//            quotient++;
+
         result.value.insert(result.value.begin(), (unsigned int) quotient);
     }
     if (result.value[0] == 0)
@@ -199,9 +220,11 @@ Large_Number Large_Number::operator*(const Large_Number &other) const {
             adding.value.push_back((unsigned int) 0);
             number_shifts--;
         }
-        adding.modN();
+
         result = result + adding;
+
     }
+    result.modN();
     return result;
 }
 
