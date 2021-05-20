@@ -210,3 +210,13 @@ Large_Number::Large_Number() {
 Large_Number Large_Number::operator=(const Large_Number &other) const {
     return Large_Number(other);
 }
+
+Large_Number Large_Number::operator+=(const Large_Number &other) {
+    *this = *this + other;
+    return Large_Number(*this);
+}
+
+Large_Number Large_Number::operator-=(const Large_Number &other) {
+    *this = *this - other;
+    return Large_Number(*this);
+}
