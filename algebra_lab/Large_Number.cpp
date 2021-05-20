@@ -125,7 +125,7 @@ Large_Number Large_Number::wholePart(Large_Number a, Large_Number b) {
     return x;
 }
 
-Large_Number Large_Number::operator/(Large_Number &other) {
+Large_Number Large_Number::operator/(const Large_Number &other) const{
     Large_Number result, x;
     x = other.modInverse();
     result = *this * x;
@@ -172,12 +172,13 @@ Large_Number Large_Number::multiply_by_digit(unsigned int digit) {
 }
 
 
-Large_Number Large_Number::operator*(Large_Number &other) {
+Large_Number Large_Number::operator*(const Large_Number &other) const{
     Large_Number result;
     result.value.push_back((unsigned int) 0);
     for (int i = other.value.size() - 1; i >= 0; i--) {
         unsigned int digit = other.value[i];
-        Large_Number adding = multiply_by_digit(digit);
+        auto temp = *this;
+        Large_Number adding = temp.multiply_by_digit(digit);
         int number_shifts = other.value.size() - 1 - i;
         while (number_shifts > 0) {
             adding.value.push_back((unsigned int) 0);
@@ -219,4 +220,12 @@ Large_Number Large_Number::operator+=(const Large_Number &other) {
 Large_Number Large_Number::operator-=(const Large_Number &other) {
     *this = *this - other;
     return Large_Number(*this);
+}
+
+Large_Number Large_Number::operator%(const Large_Number &other) const {
+
+    auto quotient = *this / other;
+    auto product = quotient * other;
+    return *this - product;
+
 }
