@@ -25,6 +25,8 @@ public:
     //const unsigned int check = pow(2, 31);
 
 public:
+    Large_Number();
+
     Large_Number(const Large_Number* other);
 
     Large_Number operator+(Large_Number &other);
