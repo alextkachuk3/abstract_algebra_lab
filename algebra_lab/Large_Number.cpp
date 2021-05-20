@@ -46,6 +46,18 @@ Large_Number Large_Number::operator-(Large_Number &other) {
     return result;
 }
 
+Large_Number Large_Number::operator+(Large_Number &other) {
+    Large_Number result, bigger, smaller;
+    if (other.value.size() == this->value.size() || *this < other) {
+        smaller = *this;
+        bigger = other;
+    } else {
+        bigger = *this;
+        smaller = other;
+    }
+    for (int i = smaller.value.size() - 1; i >= 0; i--) {}
+}
+
 Large_Number Large_Number::operator++() {
     for (int i = this->value.size() - 1; i >= 0; i--) {
         if (this->value[i] >= this->check - 1) {
