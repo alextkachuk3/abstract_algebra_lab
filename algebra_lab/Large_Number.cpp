@@ -49,13 +49,24 @@ Large_Number Large_Number::operator-(Large_Number &other) {
 Large_Number Large_Number::operator+(Large_Number &other) {
     Large_Number result, bigger, smaller;
     if (other.value.size() == this->value.size() || *this < other) {
-        smaller = *this;
         bigger = other;
+        smaller = *this;
     } else {
         bigger = *this;
         smaller = other;
     }
-    for (int i = smaller.value.size() - 1; i >= 0; i--) {}
+    for (int i = smaller.value.size() - 1; i >= 0; i--) {
+        int greater_index = i + this->value.size() - other.value.size();
+        unsigned int iter_res = this->value[greater_index] + other.value[i];
+        if (other.value.size() - i - 1 == result.value.size())
+            result.value.insert(result.value.begin(), iter_res);
+        else {
+            result.value[0] += iter_res;
+        }
+        if (this->value[greater_index] < other.value[i])
+            result.value.insert(result.value.begin(), (unsigned int) (1));
+    }
+    return result;
 }
 
 Large_Number Large_Number::operator++() {
