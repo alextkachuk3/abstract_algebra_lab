@@ -9,6 +9,7 @@
 #include <cmath>
 #include <string>
 #include <sstream>
+#include <iomanip>
 using namespace std;
 
 class Large_Number {
@@ -32,13 +33,13 @@ public:
 
     Large_Number(string s);
 
-    Large_Number(const Large_Number *other);
+    Large_Number(const Large_Number &other);
 
     Large_Number operator+(const Large_Number &other) const;
 
     Large_Number operator-(const Large_Number &other) const;
 
-    Large_Number operator=(const Large_Number &other) const;
+    Large_Number operator=(const Large_Number &other);
 
     Large_Number operator+=(const Large_Number &other);
 
@@ -67,6 +68,8 @@ public:
     Large_Number wholePart(Large_Number a, Large_Number b);
 
     bool operator<(int i);
+
+    std::string to_string() const;
 
 private:
     bool compare_strings(string s1, string s2);
