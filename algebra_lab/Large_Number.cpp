@@ -199,6 +199,7 @@ bool Large_Number::operator<(int i) {
     return value[0] < i;
 }
 
+
 Large_Number::Large_Number(const Large_Number &other) :
                 N(other.N),
                 value(other.value){}
