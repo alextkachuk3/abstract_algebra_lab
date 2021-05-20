@@ -7,6 +7,7 @@
 
 #include <vector>
 #include "cmath"
+#include "string"
 
 using namespace std;
 
@@ -29,7 +30,9 @@ public:
 
     Large_Number(unsigned int number);
 
-    Large_Number(const Large_Number* other);
+    Large_Number(string s);
+
+    Large_Number(const Large_Number *other);
 
     Large_Number operator+(const Large_Number &other) const;
 
@@ -55,6 +58,8 @@ public:
 
     Large_Number operator++();
 
+    Large_Number operator++(int);
+
     Large_Number gcdExtended(Large_Number a, Large_Number b, Large_Number *indexA, Large_Number *indexB);
 
     Large_Number modInverse();
@@ -63,6 +68,8 @@ public:
 
     bool operator<(int i);
 
+private:
+    bool compare_strings(string s1, string s2);
 };
 
 
