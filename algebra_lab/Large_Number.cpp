@@ -127,6 +127,8 @@ Large_Number Large_Number::operator/(Large_Number &other) {
     return result;
 }
 
+
+
 void Large_Number::modN() {
     if (*this < 0) {
         *this += *N;
@@ -192,4 +194,9 @@ bool Large_Number::operator<(int i) {
     if (value.size() < 1)
         return true;
     return value[0] < i;
+}
+
+Large_Number::Large_Number(const Large_Number *other) {
+    N = other->N;
+    value = other->value;
 }
