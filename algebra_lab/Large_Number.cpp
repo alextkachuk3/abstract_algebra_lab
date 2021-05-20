@@ -119,7 +119,7 @@ Large_Number Large_Number::wholePart(Large_Number a, Large_Number b) {
     Large_Number x;
     x.value.push_back((unsigned int) (0));
     while (b > a) {
-        b -= a;
+        b = b - a;
         x.operator++();
     }
     return x;
@@ -184,7 +184,7 @@ Large_Number Large_Number::operator*(Large_Number &other) {
             number_shifts--;
         }
         adding.modN();
-        result += adding;
+        result = result + adding;
     }
     return result;
 }
@@ -205,4 +205,8 @@ Large_Number::Large_Number(const Large_Number *other) {
 
 Large_Number::Large_Number() {
 
+}
+
+Large_Number Large_Number::operator=(const Large_Number &other) const {
+    return Large_Number(other);
 }
