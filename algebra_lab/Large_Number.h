@@ -10,14 +10,14 @@
 #include <string>
 #include <sstream>
 #include <iomanip>
-
+#include <algorithm>
 using namespace std;
 
 class Large_Number {
 public:
     vector<unsigned int> value;
 
-    const Large_Number *N = new Large_Number("57970cd7e29336813af");
+    const Large_Number *N;
 
     Large_Number multiply_by_digit(unsigned int digit);
 
@@ -28,13 +28,18 @@ public:
     const unsigned int check = pow(2, 31);
 
 public:
+    // Set your N, otherwise you will get a default value: 57970cd7e29336813af
     Large_Number();
 
     Large_Number(unsigned int number);
 
     Large_Number(string s);
 
+    Large_Number(string s,bool isN);
+
     Large_Number(const Large_Number &other);
+
+    void setN(string s);
 
     Large_Number operator+(const Large_Number &other) const;
 

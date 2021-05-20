@@ -8,10 +8,10 @@ using namespace std;
 int main()
 {	
 	cout << "Hello CMake." << endl;
-	const string max_digit2 = "1000000000000000000000";
-    int d = atoi(max_digit2.c_str());
-    cout << d << endl;
-	std::cout << ln::powNumber(31426, 442);
+	Large_Number a("57970cd7e29336814af");
+	Large_Number b(4);
+    a.modN();
+	cout << a.to_string() << endl;
 
 	return 0;
 }

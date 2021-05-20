@@ -108,7 +108,7 @@ Large_Number Large_Number::gcdExtended(Large_Number a, Large_Number b, Large_Num
         return b;
     }
     Large_Number x1, y1;
-    Large_Number gcd = gcdExtended(b, a, &x1, &y1);
+    Large_Number gcd = gcdExtended(b - wholePart(a,b)*a, a, &x1, &y1);
     *indexA = y1 - (wholePart(a, b)) * x1;
     *indexB = x1;
     return gcd;
@@ -134,12 +134,13 @@ Large_Number Large_Number::operator/(const Large_Number &other) const {
 
 
 void Large_Number::modN() {
-    if (*this < 0) {
+    auto temp = *this;
+    if (temp < 0) {
         *this += *N;
         modN();
     }
 
-    if (*this > *N--) {
+    if (temp++ > *N) {
         *this -= *N;
         modN();
     }
@@ -204,7 +205,7 @@ Large_Number::Large_Number(const Large_Number &other) :
                 value(other.value){}
 
 Large_Number::Large_Number() {
-
+    setN("57970cd7e29336813af");
 }
 
 Large_Number Large_Number::operator=(const Large_Number &other) {
@@ -233,10 +234,11 @@ Large_Number Large_Number::operator%(const Large_Number &other) const {
 
 Large_Number::Large_Number(unsigned int number) {
     (*this).value.push_back(number);
+    setN("57970cd7e29336813af");
 }
 
 Large_Number::Large_Number(string s) {
-
+    setN("57970cd7e29336813af");
 
     do{
 
@@ -275,4 +277,30 @@ std::string Large_Number::to_string() const  {
     auto result = stream.str();
     result.erase(0, std::min(result.find_first_not_of('0'), result.size() - 1));
     return result;
+}
+
+void Large_Number::setN(string s) {
+    N = new Large_Number(s,true);
+}
+
+Large_Number::Large_Number(string s, bool isN) {
+    do{
+
+        string digit_str;
+        if(s.length() >= 8){
+            digit_str = s.substr(s.length() - 8, 8);
+            s.erase(s.length() - 8,8);
+        }
+        else{
+            digit_str = s;
+            s.clear();
+        }
+        unsigned int x;
+        stringstream ss;
+        ss << hex << digit_str;
+        ss >> x;
+
+        value.insert(value.begin(), x);
+
+    }while (s.length() > 0);
 }
