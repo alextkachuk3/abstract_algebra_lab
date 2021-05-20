@@ -199,17 +199,18 @@ bool Large_Number::operator<(int i) {
     return value[0] < i;
 }
 
-Large_Number::Large_Number(const Large_Number *other) {
-    N = other->N;
-    value = other->value;
-}
+Large_Number::Large_Number(const Large_Number &other) :
+                N(other.N),
+                value(other.value){}
 
 Large_Number::Large_Number() {
 
 }
 
-Large_Number Large_Number::operator=(const Large_Number &other) const {
-    return Large_Number(other);
+Large_Number Large_Number::operator=(const Large_Number &other) {
+    (*this).N = other.N;
+    (*this).value = other.value;
+    return *this;
 }
 
 Large_Number Large_Number::operator+=(const Large_Number &other) {
