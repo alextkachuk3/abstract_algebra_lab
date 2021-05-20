@@ -4,7 +4,7 @@
 
 #include "Large_Number.h"
 
-bool Large_Number::operator<(Large_Number &other) {
+bool Large_Number::operator<(const Large_Number &other) const {
     if (this->value.size() > other.value.size())
         return false;
     if (this->value.size() < other.value.size())
@@ -18,20 +18,47 @@ bool Large_Number::operator<(Large_Number &other) {
     return false;
 }
 
-bool Large_Number::operator>(Large_Number &other) {
+bool Large_Number::operator>(const Large_Number &other) const {
     return other < *this;
 }
 
-bool Large_Number::operator==(Large_Number &other) {
+bool Large_Number::operator==(const Large_Number &other) const {
     if (*this > other || *this < other)
         return false;
     return true;
 }
 
-Large_Number Large_Number::operator-(Large_Number &other) {
-    if (*this < other)
-        return (*this->N - other) + *this;
+Large_Number Large_Number::operator+(const Large_Number &other) const {
+    Large_Number result, bigger, smaller;
+    if (other.value.size() == this->value.size() || *this < other) {
+        bigger = other;
+        smaller = *this;
+    } else {
+        bigger = *this;
+        smaller = other;
+    }
+    for (int i = smaller.value.size() - 1; i >= 0; i--) {
+        int greater_index = i + this->value.size() - other.value.size();
+        unsigned int iter_res = this->value[greater_index] + other.value[i];
+        if (other.value.size() - i - 1 == result.value.size())
+            result.value.insert(result.value.begin(), iter_res);
+        else {
+            result.value[0] += iter_res;
+        }
+        if (this->value[greater_index] < other.value[i])
+            result.value.insert(result.value.begin(), (unsigned int) (1));
+    }
+    return result;
+}
+
+Large_Number Large_Number::operator-(const Large_Number &other) const {
     Large_Number result;
+    if (*this < other) {
+
+        return *this + (*this->N - other);
+    }
+
+
     for (int i = other.value.size() - 1; i >= 0; i--) {
         int greater_index = i + this->value.size() - other.value.size();
         unsigned int iter_res = this->value[greater_index] - other.value[i];
@@ -91,18 +118,20 @@ Large_Number Large_Number::wholePart(Large_Number a, Large_Number b) {
     Large_Number x;
     x.value.push_back((unsigned int) (0));
     while (b > a) {
-        b -= a;
+        b = b - a;
         x.operator++();
     }
     return x;
 }
 
-Large_Number Large_Number::operator/(Large_Number &other) {
+Large_Number Large_Number::operator/(const Large_Number &other) const {
     Large_Number result, x;
-    x = other.modInverse();
+    auto temp = other;
+    x = temp.modInverse();
     result = *this * x;
     return result;
 }
+
 
 void Large_Number::modN() {
     if (*this < 0) {
@@ -125,7 +154,7 @@ Large_Number Large_Number::multiply_by_digit(unsigned int digit) {
         result.value[index] = my_digit * digit;
         unsigned int quotient = 0;
         unsigned int temp = my_digit;
-        while (digit > 0 && sqrt((double) my_digit) * sqrt((double) digit) < halfСheck) {
+        while (digit > 0 && sqrt((double) my_digit) * sqrt((double) digit) < halfCheck) {
             if (temp + my_digit < my_digit || temp + my_digit < temp)
                 quotient++;
             temp += my_digit;
@@ -143,24 +172,23 @@ Large_Number Large_Number::multiply_by_digit(unsigned int digit) {
 }
 
 
-Large_Number Large_Number::operator*(Large_Number &other) {
+Large_Number Large_Number::operator*(const Large_Number &other) const {
     Large_Number result;
     result.value.push_back((unsigned int) 0);
     for (int i = other.value.size() - 1; i >= 0; i--) {
         unsigned int digit = other.value[i];
-        Large_Number adding = multiply_by_digit(digit);
+        auto temp = *this;
+        Large_Number adding = temp.multiply_by_digit(digit);
         int number_shifts = other.value.size() - 1 - i;
         while (number_shifts > 0) {
             adding.value.push_back((unsigned int) 0);
             number_shifts--;
         }
         adding.modN();
-        result += adding;
+        result = result + adding;
     }
     return result;
 }
-
-
 
 
 bool Large_Number::operator<(int i) {
@@ -169,4 +197,69 @@ bool Large_Number::operator<(int i) {
     if (value.size() < 1)
         return true;
     return value[0] < i;
+}
+
+Large_Number::Large_Number(const Large_Number *other) {
+    N = other->N;
+    value = other->value;
+}
+
+Large_Number::Large_Number() {
+
+}
+
+Large_Number Large_Number::operator=(const Large_Number &other) const {
+    return Large_Number(other);
+}
+
+Large_Number Large_Number::operator+=(const Large_Number &other) {
+    *this = *this + other;
+    return Large_Number(*this);
+}
+
+Large_Number Large_Number::operator-=(const Large_Number &other) {
+    *this = *this - other;
+    return Large_Number(*this);
+}
+
+Large_Number Large_Number::operator%(const Large_Number &other) const {
+
+    auto quotient = *this / other;
+    auto product = quotient * other;
+    return *this - product;
+
+}
+
+Large_Number::Large_Number(unsigned int number) {
+    (*this).value.push_back(number);
+}
+
+Large_Number::Large_Number(string s) {
+
+
+    do{
+
+        string digit_str;
+        if(s.length() >= 8){
+            digit_str = s.substr(s.length() - 8, 8);
+            s.erase(s.length() - 8,8);
+        }
+        else{
+            digit_str = s;
+            s.clear();
+        }
+        unsigned int x;
+        stringstream ss;
+        ss << hex << digit_str;
+        ss >> x;
+
+        value.insert(value.begin(), x);
+
+    }while (s.length() > 0);
+}
+
+Large_Number Large_Number::operator++(int) {
+    auto temp = *this;
+    ++(*this);
+    return temp;
 }

@@ -6,8 +6,9 @@
 #define ZA_LARGE_NUMBER_H
 
 #include <vector>
-#include "cmath"
-
+#include <cmath>
+#include <string>
+#include <sstream>
 using namespace std;
 
 class Large_Number {
@@ -21,25 +22,43 @@ public:
     void modN();
 
 
-    //const unsigned int halfСheck = pow(2, 16);
-    //const unsigned int check = pow(2, 31);
+    const unsigned int halfCheck = pow(2, 16);
+    const unsigned int check = pow(2, 31);
 
 public:
-    Large_Number operator+(Large_Number &other);
+    Large_Number();
 
-    Large_Number operator-(Large_Number &other);
+    Large_Number(unsigned int number);
 
-    bool operator>(Large_Number &other);
+    Large_Number(string s);
 
-    bool operator<(Large_Number &other);
+    Large_Number(const Large_Number *other);
 
-    bool operator==(Large_Number &other);
+    Large_Number operator+(const Large_Number &other) const;
 
-    Large_Number operator*(Large_Number &other);
+    Large_Number operator-(const Large_Number &other) const;
 
-    Large_Number operator/(Large_Number &other);
+    Large_Number operator=(const Large_Number &other) const;
+
+    Large_Number operator+=(const Large_Number &other);
+
+    Large_Number operator-=(const Large_Number &other);
+
+    Large_Number operator%(const Large_Number &other) const;
+
+    bool operator>(const Large_Number &other) const;
+
+    bool operator<(const Large_Number &other) const;
+
+    bool operator==(const Large_Number &other) const;
+
+    Large_Number operator*(const Large_Number &other) const;
+
+    Large_Number operator/(const Large_Number &other) const;
 
     Large_Number operator++();
+
+    Large_Number operator++(int);
 
     Large_Number gcdExtended(Large_Number a, Large_Number b, Large_Number *indexA, Large_Number *indexB);
 
@@ -49,6 +68,8 @@ public:
 
     bool operator<(int i);
 
+private:
+    bool compare_strings(string s1, string s2);
 };
 
 
