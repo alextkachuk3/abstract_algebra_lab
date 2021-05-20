@@ -1,0 +1,8 @@
+#include "Large_Number.h"
+
+#ifndef ALGEBRA_LAB_TASK10_H
+#define ALGEBRA_LAB_TASK10_H
+
+bool miillerTest(Large_Number& d, Large_Number& n);
+bool isPrime( int k);
+#endif //ALGEBRA_LAB_TASK10_H
