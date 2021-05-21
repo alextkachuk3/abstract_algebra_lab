@@ -21,7 +21,7 @@ int main()
 	const string max_digit2 = "1000000000000000000000";
     int d = atoi(max_digit2.c_str());
     cout << d << endl;
-	std::cout << ln::powNumber(31426, 442);
+	//std::cout << ln::powNumber(31426, 442);
 
 	return 0;
 }
