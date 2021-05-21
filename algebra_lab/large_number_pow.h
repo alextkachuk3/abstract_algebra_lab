@@ -4,7 +4,7 @@
 #include <vector>
 namespace ln//large number
 {
-	using Number = unsigned long long;
+	using Number = Large_Number;
 	Number powNumber(const Number& number, const Number& exp);
 	std::vector<Number> decomposeExp(Number exp);
 	Number montgomeryMultiplication(const Number& montNumber1, const Number& montNumber2,

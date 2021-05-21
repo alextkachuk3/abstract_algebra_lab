@@ -8,7 +8,7 @@ namespace ln
         if (exp == Number(unsigned(1))) return number;
         unsigned base = 10;
         Number modulus = Number(unsigned(3571));// will take in Large_Nuber as N
-        //if(number.N) modulus = *(number.N);
+        if(number.N) modulus = *(number.N);
         unsigned modulusLength = length(modulus, base);
         Number numberR = Number(unsigned(0));
         if (modulusLength > 9) numberR = powNumber(Number(base), Number(modulusLength)) % modulus;
