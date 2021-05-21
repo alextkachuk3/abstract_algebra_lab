@@ -242,7 +242,7 @@ namespace Field
 
 using namespace Field;
 
-int main(int argc, char* argv[])
+/*int main(int argc, char* argv[])
 {
     typedef EllipticCurve<16> ec_t;
     ec_t   myEllipticCurve(1, 1);
@@ -259,4 +259,4 @@ int main(int argc, char* argv[])
 
     system("pause");
     return 0;
-}
+}*/

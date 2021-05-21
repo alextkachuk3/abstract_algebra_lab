@@ -1,15 +1,6 @@
 #include "phi_and_lambda.h"
 
-Large_Number gcd(Large_Number a, Large_Number b)
-{
-	while (a > 0 && b > 0) {
-		if (a > b)
-			a = a % b;
-		else
-			b = b % a;
-	}
-	return a + b;
-}
+
 
 Large_Number phi(Large_Number& n)
 {

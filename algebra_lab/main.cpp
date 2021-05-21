@@ -1,12 +1,10 @@
 ﻿#include <iostream>
-#include "Sqrt.h"
-#include "Large_Number.h"
-#include "large_number_pow.h"
-#include "unit_test_framework.h"
-#include "test_pow.h"
-#include "phi_and_lambda.h"
-#include "Primal_1.cpp"
-#include "discrete_logarithm.cpp"
+//#include "Sqrt.h"
+//#include "Large_Number.h"
+//#include "large_number_pow.h"
+//#include "phi_and_lambda.h"
+//#include "Primal_1.cpp"
+//#include "discrete_logarithm.cpp"
 #include "BigInt.h"
 
 using namespace std;
@@ -33,7 +31,7 @@ int main()
 	cout << q;
 
 	//std::cout << ln::powNumber(31426, 442);
-	Primal_1();
+	
 
 	return 0;
 }
