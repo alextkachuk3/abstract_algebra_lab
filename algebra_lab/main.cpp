@@ -1,7 +1,7 @@
 ﻿#include <iostream>
 //#include "Sqrt.h"
 //#include "Large_Number.h"
-//#include "large_number_pow.h"
+#include "large_number_pow.h"
 //#include "phi_and_lambda.h"
 //#include "Primal_1.cpp"
 //#include "discrete_logarithm.cpp"
@@ -26,12 +26,13 @@ int main()
 
 	//std::cout << ln::powNumber(31426, 442);
 
-	BigInt q = 10;
+	/*BigInt q = 10;
 
-	cout << q;
+	cout << q;*/
 
 	//std::cout << ln::powNumber(31426, 442);
-	
 
+	std::cout << ln::powNumber(3465342, 12) << std::endl;
+	std::cout << ln::powNaive(3465342, 12) << std::endl;
 	return 0;
 }

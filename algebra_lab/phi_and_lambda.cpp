@@ -1,7 +1,7 @@
 #include "phi_and_lambda.h"
 
 
-
+/*
 Large_Number phi(Large_Number& n)
 {
 	Large_Number result = n;
@@ -51,4 +51,4 @@ Large_Number lambda(Large_Number n)
 		}
 		if (counter == coprime.size()) return i;
 	}
-}
+}*/
