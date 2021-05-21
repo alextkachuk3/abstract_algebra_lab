@@ -4,6 +4,7 @@
 #include "large_number_pow.h"
 #include "phi_and_lambda.h"
 //#include "Primal_1.cpp"
+#include "Pollard Rho.cpp"
 //#include "discrete_logarithm.cpp"
 #include "BigInt.h"
 
