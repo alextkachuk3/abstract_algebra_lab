@@ -22,12 +22,11 @@ int main()
 	const string max_digit2 = "1000000000000000000000";
     int d = atoi(max_digit2.c_str());
     cout << d << endl;
-<<<<<<< Updated upstream
+
 	//std::cout << ln::powNumber(31426, 442);
 
-=======
 	std::cout << ln::powNumber(31426, 442);
 	Primal_1();
->>>>>>> Stashed changes
+
 	return 0;
 }
