@@ -2,6 +2,16 @@
 
 namespace ln
 {
+    Number powNaive(const Number& number, const Number& exp)
+    {
+        Number modulus = Number(unsigned(3571));
+        Number res = Number(unsigned(1));
+        for (Number i = Number(unsigned(1)); i < exp + Number(unsigned(1)); i++)
+        {
+            res = res * (number % modulus);
+        }
+        return res % modulus;
+    }
     Number powNumber(const Number& number, const Number& exp)
     {
         if (exp == Number(unsigned(0))) return Number(unsigned(1));
