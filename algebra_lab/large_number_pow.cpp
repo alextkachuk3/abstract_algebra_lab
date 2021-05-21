@@ -4,20 +4,21 @@ namespace ln
 {
     Number powNumber(const Number& number, const Number& exp)
     {
-        if (exp == Number(0)) return Number(1);
-        if (exp == Number(1)) return number;
+        if (exp == Number(unsigned(0))) return Number(unsigned(1));
+        if (exp == Number(unsigned(1))) return number;
         unsigned base = 10;
-        Number modulus = 3571;// will take in Large_Nuber as N
+        Number modulus = Number(unsigned(3571));// will take in Large_Nuber as N
+        //if(number.N) modulus = *(number.N);
         unsigned modulusLength = length(modulus, base);
-        Number numberR = Number(0);
-        if (modulusLength > 18) numberR = powNumber(Number(base), Number(modulusLength)) % modulus;
-        else numberR = Number(pow(base, modulusLength)) % modulus;//10^18 < MAX_DOUBLE, pow return double
-        Number rInv = Number(0), modulusInv = Number(0);
+        Number numberR = Number(unsigned(0));
+        if (modulusLength > 9) numberR = powNumber(Number(base), Number(modulusLength)) % modulus;
+        else numberR = Number(unsigned(pow(base, modulusLength))) % modulus;//10^9 < MAX_UNSIGNED
+        Number rInv = Number(unsigned(0)), modulusInv = Number(unsigned(0));
         Number gcs = gcdExtended(numberR, modulus, rInv, modulusInv);
-        modulusInv = -1 * modulusInv;
+        modulusInv = Number(unsigned(0)) - modulusInv;
         auto allExp = decomposeExp(exp);//exp = 13 -> allExp = {8, 4, 1}
         std::vector<Number> montNumbers(length(exp, 2));//for x^1, x^2, x^4, x^8 ... x^allExp[allExp.size() - 1]
-        if (montNumbers.size() == 0) return Number(1);
+        if (montNumbers.size() == 0) return Number(unsigned(1));
         auto montNumber = (number * numberR) % modulus;//montgomery form
         montNumbers[0] = montNumber;
         for (std::size_t i = 1; i < montNumbers.size(); i++)
@@ -35,51 +36,43 @@ namespace ln
 
         return (res * rInv % modulus);
     }
-
-    Number degree_of_two(const Number& exp)
-    {
-        Number res = Number(1);
-        for (Number i = Number(1); i <= exp; i++)
-            res *= Number(2);
-        return res;
-    }
     std::vector<Number> decomposeExp(Number exp)
     {
-        unsigned len = Number(length(exp, 2) - 1);
+        unsigned len = length(exp, 2) - 1;
         std::vector<Number> arr;
-        Number part = Number(0);
-        if (len > Number(63)) part = powNumber(Number(2), Number(len));
-        else part = Number(pow(2, len));
-        while (exp > Number(0))
+        Number part = Number(unsigned(0));
+        if (len > 31) part = powNumber(Number(unsigned(2)), Number(len));
+        else part = Number(unsigned(pow(2, len)));
+        while (exp > Number(unsigned(0)))
         {
-            if (part <= exp)
+            if (part < exp + Number(unsigned(1)))
             {
                 arr.push_back(part);
                 exp = exp - part;
             }
-            part = part / Number(2);
+            part = part / Number(unsigned(2));
         }
         return arr;
     }
     unsigned length(Number number, const Number& base)
     {
-        Number res = Number(0);
-        while (number > 0)
+        unsigned res = 0;
+        while (number > Number(unsigned(0)))
         {
             number = number / base;
-            res = res + 1;
+            res++;
         }
         return res;
     }
     Number gcdExtended(const Number& numberR, const Number& numberN, Number& rInv, Number& nInv)
     {
-        if (numberR == Number(0))
+        if (numberR == Number(unsigned(0)))
         {
-            rInv = Number(0);
-            nInv = Number(1);
+            rInv = Number(unsigned(0));
+            nInv = Number(unsigned(1));
             return numberN;
         }
-        Number rInv1 = Number(0), nInv1 = Number(0);
+        Number rInv1 = Number(unsigned(0)), nInv1 = Number(unsigned(0));
         Number gcd = gcdExtended(numberN % numberR, numberR, rInv1, nInv1);
         rInv = nInv1 - (numberN / numberR) * rInv1;
         nInv = rInv1;

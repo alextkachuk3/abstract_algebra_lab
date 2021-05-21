@@ -199,17 +199,18 @@ bool Large_Number::operator<(int i) {
     return value[0] < i;
 }
 
-Large_Number::Large_Number(const Large_Number *other) {
-    N = other->N;
-    value = other->value;
-}
+Large_Number::Large_Number(const Large_Number &other) :
+                N(other.N),
+                value(other.value){}
 
 Large_Number::Large_Number() {
 
 }
 
-Large_Number Large_Number::operator=(const Large_Number &other) const {
-    return Large_Number(other);
+Large_Number Large_Number::operator=(const Large_Number &other) {
+    (*this).N = other.N;
+    (*this).value = other.value;
+    return *this;
 }
 
 Large_Number Large_Number::operator+=(const Large_Number &other) {
@@ -262,4 +263,16 @@ Large_Number Large_Number::operator++(int) {
     auto temp = *this;
     ++(*this);
     return temp;
+}
+
+std::string Large_Number::to_string() const  {
+    std::stringstream stream;
+    for (auto &i : value) {
+        stream << std::setfill('0')
+               << std::setw(sizeof(int32_t)*2)
+               << std::hex << i;
+    }
+    auto result = stream.str();
+    result.erase(0, std::min(result.find_first_not_of('0'), result.size() - 1));
+    return result;
 }
