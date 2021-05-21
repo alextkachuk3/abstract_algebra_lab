@@ -4,6 +4,7 @@
 #include "large_number_pow.h"
 #include "unit_test_framework.h"
 #include "test_pow.h"
+#include "phi_and_lambda.h"
 
 using namespace std;
 

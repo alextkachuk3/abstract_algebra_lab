@@ -52,7 +52,7 @@ Large_Number lambda(Large_Number n)
 	vector<Large_Number> coprime = coprime_integers(n);
 	for (Large_Number i = 1; ; i++)
 	{
-		int counter = 0;
+		Large_Number counter = 0;
 		for (const auto& a : coprime)
 		{
 			if ((ln::powNumber(a, i) % n) == 1) counter++;
