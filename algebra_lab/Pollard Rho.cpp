@@ -4,39 +4,39 @@
 #include "sqrt.h"
 
 
-template <class T>
-T pollard_p_1(T n)
-{
+Large_Number pollardsRhoMethod(Large_Number rsa, Large_Number cVal, Large_Number xVal) {
+	Large_Number primeFactor;
+	int k = 0;
+	vector<Large_Number> currentValue;
 
-	const T b = 13;
-	const T q[] = { 2, 3, 5, 7, 11, 13 };
+	for (Large_Number i = 0; i < STonelliSQRT(rsa, Large_Number (2)); i++) {
 
-	T a = 5 % n;
-	for (int j = 0; j < 10; j++)
-	{
+		
+		Large_Number xCurrent = (((xVal * xVal) + cVal) % rsa);
 
-		while (gcd(a, n) != 1)
-		{
-			mulmod(a, a, n);
-			a += 3;
-			a %= n;
-		}
-M
-		for (size_t i = 0; i < sizeof q / sizeof q[0]; i++)
-		{
-			T qq = q[i];
-			T e = (T)floor(log((double)b) / log((double)qq));
-			T aa = powmod(a, powmod(qq, e, n), n);
-			if (aa == 0)
-				continue;
+		
+		currentValue.push_back(xCurrent);
 
-			T g = gcd(aa - 1, n);
-			if (1 < g && g < n)
-				return g;
-		}
+		
+		Large_Number xNext = (((xCurrent * xCurrent) + cVal) % rsa);
 
+	
+		currentValue.push_back(xNext);
+
+		
+		Large_Number myValue = currentValue.at(k++);
+
+	Large_Number difference = (myValue - xNext);
+
+		xVal = xNext;
+
+		primeFactor = gcd(difference, rsa);
+
+		if ((primeFactor == 1) && (primeFactor == rsa))
+			return primeFactor;
 	}
 
-	return 1;
+	cout << "N could not be factored." << endl; 
 
+	return 1; 
 }
