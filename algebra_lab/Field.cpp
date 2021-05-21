@@ -3,7 +3,7 @@
 #include <vector>
 using namespace std;
 #include <math.h>
-#include "FiniteFieldElement.hpp"
+#include "FiniteFieldElement.h"
 
 namespace Field
 {

@@ -15,7 +15,7 @@ Large_Number phi(Large_Number& n)
 {
 	Large_Number result = n;
 
-	for (Large_Number p = 2; p * p <= n; ++p)
+	for (Large_Number p = 2; p * p < n; ++p)
 	{
 
 		if (n % p == 0)
