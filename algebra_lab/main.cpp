@@ -6,8 +6,6 @@
 #include "Primal_1.h"
 #include "Pollard_Rho.h"
 //#include "discrete_logarithm.cpp"
-#include "BigInt.h"
-
 using namespace std;
 
 int main()
