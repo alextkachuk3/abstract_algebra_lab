@@ -4,7 +4,7 @@
 #include "Large_Number.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include "discrete_logarithm.h"
+//#include "discrete_logarithm.h"
 //#include "large_number_pow.h"
 //#include "discrete_logarithm.h"
 
