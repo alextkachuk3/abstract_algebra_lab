@@ -1,5 +1,5 @@
-#include <iostream>
-#include <math.h>
+
+#include "Pollard_Rho.h"
 //#include "Large_Number.h"
 //#include "sqrt.h"
 

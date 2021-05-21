@@ -1,5 +1,5 @@
-#include <iostream>
-#include <math.h>
+
+#include "Primal_1.h"
 //#include "Large_Number.h"
 //#include "sqrt.h"
 using namespace std;
