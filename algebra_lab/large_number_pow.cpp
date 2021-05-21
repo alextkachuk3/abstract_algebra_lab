@@ -1,24 +1,22 @@
 #include "large_number_pow.h"
-
+#include <iostream>
 namespace ln
 {
-    Number powNaive(const Number& number, const Number& exp)
+    Number powNaive(const Number& number, const Number& exp, const Number& modulus)
     {
-        Number modulus = Number(unsigned(3571));
         Number res = Number(unsigned(1));
         for (Number i = Number(unsigned(1)); i < exp + Number(unsigned(1)); i++)
         {
-            res = res * (number % modulus);
+            res = (res * (number % modulus)) % modulus;
         }
         return res % modulus;
     }
-    Number powNumber(const Number& number, const Number& exp)
+    Number powNumber(const Number& number, const Number& exp, const Number& modulus)
     {
         if (exp == Number(unsigned(0))) return Number(unsigned(1));
         if (exp == Number(unsigned(1))) return number;
         unsigned base = 10;
-        Number modulus = Number(unsigned(3571));// will take in Large_Nuber as N
-        if(number.N) modulus = *(number.N);
+        //if(number.N) modulus = *(number.N);// will take in Large_Nuber as N
         unsigned modulusLength = length(modulus, base);
         Number numberR = Number(unsigned(0));
         if (modulusLength > 9) numberR = powNumber(Number(base), Number(modulusLength)) % modulus;
@@ -43,8 +41,7 @@ namespace ln
             res = montgomeryMultiplication(res,
                 montNumbers[length(allExp[i], 2) - 1], numberR, modulus, modulusInv);
         }
-
-        return (res * rInv % modulus);
+        return ((res * rInv) % modulus);
     }
     std::vector<Number> decomposeExp(Number exp)
     {

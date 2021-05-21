@@ -1,5 +1,5 @@
 #include "task10.h"
-#include "large_number_pow.h"
+#include "large_number_pow.h"/*
 bool miillerTest(Large_Number& d, Large_Number& n)
 {
     Large_Number nm=n; nm.value[nm.value.size()-1]-=1;
@@ -34,4 +34,4 @@ bool isPrime(Large_Number& n, int k)
             return false;
 
     return true;
-}
+}*/
