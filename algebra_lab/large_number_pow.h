@@ -5,6 +5,7 @@
 namespace ln//large number
 {
 	using Number = Large_Number;
+	Number powNaive(const Number& number, const Number& exp);
 	Number powNumber(const Number& number, const Number& exp);
 	std::vector<Number> decomposeExp(Number exp);
 	Number montgomeryMultiplication(const Number& montNumber1, const Number& montNumber2,
