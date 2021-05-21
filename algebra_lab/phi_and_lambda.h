@@ -3,9 +3,12 @@
 
 #include "large_number_pow.h"
 
+long long gcd(long long a, long long b);
 
-Large_Number phi(Large_Number& n);
+long long phi(long long n);
 
-vector<Large_Number> coprime_integers(Large_Number n);
+vector<long long> coprime_integers(long long n);
 
-Large_Number lambda(Large_Number n);
+long long lambda(long long n);
+
+string p_h_tests();

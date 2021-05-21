@@ -1,12 +1,21 @@
 #include "phi_and_lambda.h"
 
-
-/*
-Large_Number phi(Large_Number& n)
+long long gcd(long long a, long long b)
 {
-	Large_Number result = n;
+	while (a && b) {
+		if (a > b)
+			a %= b;
+		else
+			b %= a;
+	}
+	return a + b;
+}
 
-	for (Large_Number p = 2; p * p < n; ++p)
+long long phi(long long n)
+{
+	long long result = n;
+
+	for (long long p = 2; p * p <= n; ++p)
 	{
 
 		if (n % p == 0)
@@ -25,10 +34,10 @@ Large_Number phi(Large_Number& n)
 	return result;
 }
 
-vector<Large_Number> coprime_integers(Large_Number n)
+vector<long long> coprime_integers(long long n)
 {
-	vector<Large_Number> result;
-	for (Large_Number i = 2; i < n; i++)
+	vector<long long> result;
+	for (long long i = 2; i < n; i++)
 	{
 		if (gcd(i, n) == 1)
 		{
@@ -38,17 +47,56 @@ vector<Large_Number> coprime_integers(Large_Number n)
 	return result;
 }
 
-Large_Number lambda(Large_Number n)
+long long lambda(long long n)
 {
-	vector<Large_Number> coprime = coprime_integers(n);
-	for (Large_Number i = 1; ; i++)
+	vector<long long> coprime = coprime_integers(n);
+	for (long long i = 1; ; i++)
 	{
-		Large_Number counter = 0;
+		long long counter = 0;
 		for (const auto& a : coprime)
 		{
-			if ((ln::powNumber(a, i) % n) == 1) counter++;
+			long long step = a;
+			for (int j = 1; j < i; j++)
+			{
+				step = (step * a) % n;
+			}
+			if (step == 1) counter++;
 			else break;
 		}
 		if (counter == coprime.size()) return i;
 	}
-}*/
+}
+
+string p_h_tests()
+{
+	if (phi(5252) != 2400)
+		return "1 fail!";
+	else if(lambda(5252) != 300)
+		return "2 fail!";
+	else if (phi(4) != 2)
+		return "3 fail";
+	else if (lambda(4) != 2)
+		return "4 fail!";
+	else if (phi(42126) != 11136)
+		return "5 fail";
+	else if (lambda(42126) != 1392)
+		return "6 fail!";
+	else if (phi(100) != 40)
+		return "7 fail";
+	else if (lambda(100) != 20)
+		return "8 fail!";
+	else if (phi(9777) != 6516)
+		return "9 fail";
+	else if (lambda(9777) != 3258)
+		return "10 fail!";
+	else if (phi(1483) != 1482)
+		return "11 fail";
+	else if (lambda(100000) != 5000)
+		return "12 fail!";
+	else if (phi(5252) != 2400)
+		return "13 fail";
+	else if (lambda(5252) != 300)
+		return "14 fail!";
+	
+	return "SUCCESS";
+}

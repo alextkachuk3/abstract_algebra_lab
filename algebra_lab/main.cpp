@@ -2,7 +2,7 @@
 //#include "Sqrt.h"
 //#include "Large_Number.h"
 #include "large_number_pow.h"
-//#include "phi_and_lambda.h"
+#include "phi_and_lambda.h"
 //#include "Primal_1.cpp"
 //#include "discrete_logarithm.cpp"
 #include "BigInt.h"
@@ -34,5 +34,20 @@ int main()
 
 	std::cout << ln::powNumber(3465342, 12) << std::endl;
 	std::cout << ln::powNaive(3465342, 12) << std::endl;
+
+
+
+
+	long long q;
+	cin >> q;
+	while (q)
+	{
+		cout << "phi:" << phi(q) << endl;
+		cout << "lambda:" << lambda(q) << endl;
+		cin >> q;
+	}
+
+	cout << p_h_tests() << endl;
+
 	return 0;
 }
