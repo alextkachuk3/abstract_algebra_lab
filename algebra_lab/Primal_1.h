@@ -1,7 +1,6 @@
 #pragma once
 #include <iostream>
 #include <math.h>
-#include <iostream>
 
-void printPrimeFactors();
+void printPrimeFactors(long long n);
 void Primal_1();

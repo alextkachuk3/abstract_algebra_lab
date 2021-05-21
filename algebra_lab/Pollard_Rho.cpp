@@ -4,67 +4,67 @@
 //#include "sqrt.h"
 
 
-long long int gcd1(long long  a,long long  b) {
-	return b ? gcd1(b, a % b) : a;
+long long  gcd12(long long  a,long long  b) {
+	return b ? gcd12(b, a % b) : a;
 }
 
 
-void mulmod(long long & a, long long  b, const long long & n)
+void mulmod1(long long & a, long long  b, const long long & n)
 {
 	a = long long ((((long long )a) * b) % n);
 }
 
 
-void bisect(long long& n)
+void bisect1(long long& n)
 {
 	// n /= 2;
 	n >>= 1;
 }
-bool even(const long long& n)
+bool even1(const long long& n)
 {
 	// return n % 2 == 0;
 	return (n & 1) == 0;
 }
 
 
-long long pollard_rho (long long n, long long iterations_count = 100000)
+long long pollard_rho (long long n, long long iterations_count )
 {
 	long long
 		b0 = rand() % n,
 		b1 = b0,
 		g;
-	mulmod(b1, b1, n);
+	mulmod1(b1, b1, n);
 	if (++b1 == n)
 		b1 = 0;
-	g = gcd1(abs(b1 - b0), n);
+	g = gcd12(abs(b1 - b0), n);
 	for (long long  count = 0; count < iterations_count && (g == 1 || g == n); count++)
 	{
-		mulmod(b0, b0, n);
+		mulmod1(b0, b0, n);
 		if (++b0 == n)
 			b0 = 0;
-		mulmod(b1, b1, n);
+		mulmod1(b1, b1, n);
 		++b1;
-		mulmod(b1, b1, n);
+		mulmod1(b1, b1, n);
 		if (++b1 == n)
 			b1 = 0;
-		g = gcd1(abs(b1 - b0), n);
+		g = gcd12(abs(b1 - b0), n);
 	}
 	return g;
 }
 
-long long powmod(long long a,long long k, const long long& n)
+long long powmod1(long long a,long long k, const long long& n)
 {
 	long long  res = 1;
 	while (k)
-		if (!even(k))
+		if (!even1(k))
 		{
-			mulmod(res, a, n);
+			mulmod1(res, a, n);
 			--k;
 		}
 		else
 		{
-			mulmod(a, a, n);
-			bisect(k);
+			mulmod1(a, a, n);
+			bisect1(k);
 		}
 	return res;
 }

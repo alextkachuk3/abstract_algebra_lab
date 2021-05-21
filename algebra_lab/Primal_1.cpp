@@ -1,4 +1,5 @@
-
+//#include <math.h>
+//#include <iostream>
 #include "Primal_1.h"
 //#include "Large_Number.h"
 //#include "sqrt.h"
@@ -19,7 +20,7 @@ void printPrimeFactors(long long n) {
 }
 void Primal_1() {
 
-    long long  n = 2934536567645;
+    long long  n = 2934536785456656;
     cout << "Prime factors of " << n << " are :\t";
     printPrimeFactors(n);
 }

@@ -3,8 +3,8 @@
 //#include "Large_Number.h"
 #include "large_number_pow.h"
 #include "phi_and_lambda.h"
-//#include "Primal_1.cpp"
-#include "Pollard_Rho.cpp"
+#include "Primal_1.h"
+#include "Pollard_Rho.h"
 //#include "discrete_logarithm.cpp"
 #include "BigInt.h"
 
@@ -33,22 +33,24 @@ int main()
 
 	//std::cout << ln::powNumber(31426, 442);
 
-	std::cout << ln::powNumber(3465342, 12) << std::endl;
-	std::cout << ln::powNaive(3465342, 12) << std::endl;
+	//std::cout << ln::powNumber(3465342, 12) << std::endl;
+	//std::cout << ln::powNaive(3465342, 12) << std::endl;
 
 
 
 
-	long long q;
-	cin >> q;
-	while (q)
-	{
-		cout << "phi:" << phi(q) << endl;
-		cout << "lambda:" << lambda(q) << endl;
-		cin >> q;
-	}
+	//long long q;
+	//cin >> q;
+	//while (q)
+	//{
+	//	cout << "phi:" << phi(q) << endl;
+	//	cout << "lambda:" << lambda(q) << endl;
+	//	cin >> q;
+	//}
 
-	cout << p_h_tests() << endl;
-
+	//cout << p_h_tests() << endl;
+	Primal_1();
+	long long n = 23423423423423;
+	pollard_rho(n);
 	return 0;
 }
