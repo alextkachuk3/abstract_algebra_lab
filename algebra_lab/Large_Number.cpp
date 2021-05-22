@@ -390,3 +390,16 @@ Large_Number::Large_Number(string s, bool isN) {
 
     } while (s.length() > 0);
 }
+
+Large_Number Large_Number::generate_random_number() {
+    random_device rd;
+    uniform_int_distribution<int> dist1(1,18);
+    uniform_int_distribution<int> dist2(0,15);
+    const string hex_digits = "0123456789abcdef";
+    int len = dist1(rd) % 17 + 1;
+    string our_number = "";
+    for(int i = 0;i<len;i++){
+        our_number += hex_digits[dist1(rd)%16];
+    }
+    return Large_Number(our_number);
+}

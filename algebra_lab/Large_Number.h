@@ -11,6 +11,7 @@
 #include <sstream>
 #include <iomanip>
 #include <algorithm>
+#include <random>
 using namespace std;
 
 class Large_Number {
@@ -70,6 +71,8 @@ public:
     Large_Number gcdExtended(Large_Number a, Large_Number b, Large_Number &indexA, Large_Number &indexB, bool &indexA_isNeg,bool &indexB_isNeg);
 
     Large_Number modInverse();
+
+    Large_Number generate_random_number();
 
     Large_Number wholePart(Large_Number a, Large_Number b);
 
