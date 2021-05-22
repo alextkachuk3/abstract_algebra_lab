@@ -19,15 +19,15 @@ namespace ln
         //if(number.N) modulus = *(number.N);// will take in Large_Nuber as N
         unsigned modulusLength = length(modulus, base);
         Number numberR = Number(unsigned(0));
-        if (modulusLength > 9) numberR = powNumber(Number(base), Number(modulusLength)) % modulus;
+        if (modulusLength > 9) numberR = powNumber(Number(base), Number(modulusLength), modulus);
         else numberR = Number(unsigned(pow(base, modulusLength))) % modulus;//10^9 < MAX_UNSIGNED
         Number rInv = Number(unsigned(0)), modulusInv = Number(unsigned(0));
         Number gcs = gcdExtended(numberR, modulus, rInv, modulusInv);
         modulusInv = Number(unsigned(0)) - modulusInv;
-        auto allExp = decomposeExp(exp);//exp = 13 -> allExp = {8, 4, 1}
+        auto allExp = decomposeExp(exp, modulus);//exp = 13 -> allExp = {8, 4, 1}
         std::vector<Number> montNumbers(length(exp, 2));//for x^1, x^2, x^4, x^8 ... x^allExp[allExp.size() - 1]
         if (montNumbers.size() == 0) return Number(unsigned(1));
-        auto montNumber = (number * numberR) % modulus;//montgomery form
+        auto montNumber = mod(number * numberR, modulus);//montgomery form
         montNumbers[0] = montNumber;
         for (std::size_t i = 1; i < montNumbers.size(); i++)
         {
@@ -41,14 +41,14 @@ namespace ln
             res = montgomeryMultiplication(res,
                 montNumbers[length(allExp[i], 2) - 1], numberR, modulus, modulusInv);
         }
-        return ((res * rInv) % modulus);
+        return mod(res * rInv, modulus);
     }
-    std::vector<Number> decomposeExp(Number exp)
+    std::vector<Number> decomposeExp(Number exp, const Number& modulus)
     {
         unsigned len = length(exp, 2) - 1;
         std::vector<Number> arr;
         Number part = Number(unsigned(0));
-        if (len > 31) part = powNumber(Number(unsigned(2)), Number(len));
+        if (len > 31) part = powNumber(Number(unsigned(2)), Number(len),modulus);
         else part = Number(unsigned(pow(2, len)));
         while (exp > Number(unsigned(0)))
         {
@@ -89,10 +89,14 @@ namespace ln
     Number montgomeryMultiplication(const Number& montNumber1, const Number& montNumber2,
         const Number& numberR, const Number& modulus, const Number& modulusInv)
     {
-        auto numberT = montNumber1 * montNumber2;
-        auto tModulus = numberT % numberR;
-        auto numberU = (numberT + ((modulusInv * tModulus) % numberR) * modulus) / numberR;
+        Number numberT = montNumber1 * montNumber2;
+        Number tModulus = numberT % numberR;
+        Number numberU = (numberT + (mod(modulusInv * tModulus, numberR)) * modulus) / numberR;
         while (numberU > modulus) numberU = numberU - modulus;
         return numberU;//in montgomery form
+    }
+    Number mod(const Number& number, const Number& modulus)
+    {
+        return (number % modulus + modulus) % modulus;
     }
 }
