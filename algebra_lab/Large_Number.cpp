@@ -276,3 +276,8 @@ std::string Large_Number::to_string() const  {
     result.erase(0, std::min(result.find_first_not_of('0'), result.size() - 1));
     return result;
 }
+
+std::ostream &operator<<(ostream &os, const Large_Number &number) {
+    os << number.to_string();
+    return os;
+}
