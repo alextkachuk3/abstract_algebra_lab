@@ -5,8 +5,6 @@
 //#include "phi_and_lambda.h"
 //#include "Primal_1.cpp"
 //#include "discrete_logarithm.cpp"
-#include "BigInt.h"
-
 using namespace std;
 
 int main()
@@ -31,8 +29,7 @@ int main()
 	cout << q;*/
 
 	//std::cout << ln::powNumber(31426, 442);
-
-	std::cout << ln::powNumber(3465342, 12) << std::endl;
-	std::cout << ln::powNaive(3465342, 12) << std::endl;
+	std::cout << ln::powNumber(12, 5, 151) << std::endl;
+	std::cout << ln::powNaive(12, 5, 151) << std::endl;
 	return 0;
 }
