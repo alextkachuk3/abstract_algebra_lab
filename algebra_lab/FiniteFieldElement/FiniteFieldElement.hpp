@@ -4,6 +4,8 @@
 #include <sstream>
 #include "EllipticCurve.hpp"
 
+// Елемент на скінченому полі
+// Характеристика поля лежить у вкладеному класі еліптичної кривої
 class FiniteFieldElement {
 public:
     FiniteFieldElement();
@@ -40,9 +42,13 @@ public:
 
 private:
 
+    // Нормалізує значення по скінченому полю
     int getNormalized(int value) const;
 
+    // Розширений алгоритм евкліда
     int EGCD(int a, int b, int& u, int &v) const;
+
+    // Вирішує x * z == 1 (mod n) для z
     int inv_mod(int x, int n) const;
 
     // todo change type
