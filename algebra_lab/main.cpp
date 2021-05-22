@@ -6,10 +6,14 @@
 #include "Primal_1.h"
 #include "Pollard_Rho.h"
 //#include "discrete_logarithm.cpp"
+
+#include "FiniteFieldElement/elliptic_point_demo.hpp"
+
 using namespace std;
 
 int main()
-{	
+{
+    elliptic_point_demo();
 	//{ // Tests for large_number_pow
 	//	TestRunner tr;
 	//	RUN_TEST(tr, TestPowNumber);
