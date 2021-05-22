@@ -167,12 +167,8 @@ Large_Number Large_Number::operator/(const Large_Number &other) const {
 
 void Large_Number::modN() {
     auto temp = *this;
-    if (temp < 0) {
-        *this += *N;
-        modN();
-    }
 
-    if (temp++ > *N) {
+    if (!(temp < *N)) {
         *this -= *N;
         modN();
     }
