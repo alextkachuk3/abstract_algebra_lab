@@ -1,4 +1,4 @@
-cmake_minimum_required (VERSION 3.8)
+﻿cmake_minimum_required (VERSION 3.8)
 
 add_executable (algebra_lab
         "main.cpp"
@@ -13,5 +13,6 @@ add_executable (algebra_lab
         "Primal_1.cpp" "Primal_1.h"
         "Pollard_Rho.cpp" "Pollard_Rho.h"
         "FiniteFieldElement/FiniteFieldElement.hpp" "FiniteFieldElement/FiniteFieldElement.cpp"
+        "FiniteFieldElement/Point.hpp" "FiniteFieldElement/Point.cpp"
         "FiniteFieldElement/EllipticCurve.hpp" "FiniteFieldElement/EllipticCurve.cpp")
 
