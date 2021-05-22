@@ -12,5 +12,6 @@ add_executable (algebra_lab
         "phi_and_lambda.h" "phi_and_lambda.cpp"
         "Primal_1.cpp" "Primal_1.h"
         "Pollard_Rho.cpp" "Pollard_Rho.h"
+        "FiniteFieldElement/FiniteFieldElement.hpp" "FiniteFieldElement/FiniteFieldElement.cpp"
         "FiniteFieldElement/EllipticCurve.hpp" "FiniteFieldElement/EllipticCurve.cpp")
 
