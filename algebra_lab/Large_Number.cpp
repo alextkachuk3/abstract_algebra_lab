@@ -53,7 +53,7 @@ Large_Number Large_Number::operator+(const Large_Number &other) const {
         else {
             result.value[0] += iter_res;
         }
-        if (bigger.value[greater_index] < smaller.value[i])
+        if (bigger.value[greater_index]/2 + smaller.value[i]/2 > (smaller.value[i] + bigger.value[greater_index])/2)
             result.value.insert(result.value.begin(), (unsigned int) (1));
     }
     for (int i = bigger.value.size() - smaller.value.size() - 1; i >= 0; i--){
