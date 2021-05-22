@@ -7,10 +7,10 @@
 bool Large_Number::operator<(const Large_Number &other) const {
     auto temp1 = *this;
     auto temp2 = other;
-    while (temp2.value[0] == 0 && temp2.value.size() > 1){
+    while (temp2.value[0] == 0 && temp2.value.size() > 1) {
         temp2.value.erase(temp2.value.begin());
     }
-    while (temp1.value[0] == 0 && temp1.value.size() > 1){
+    while (temp1.value[0] == 0 && temp1.value.size() > 1) {
         temp1.value.erase(temp1.value.begin());
     }
     if (temp1.value.size() > temp2.value.size())
@@ -53,13 +53,14 @@ Large_Number Large_Number::operator+(const Large_Number &other) const {
         else {
             result.value[0] += iter_res;
         }
-        if (bigger.value[greater_index]/2 + smaller.value[i]/2 > (smaller.value[i] + bigger.value[greater_index])/2)
+        if (bigger.value[greater_index] / 2 + smaller.value[i] / 2 >
+            (smaller.value[i] + bigger.value[greater_index]) / 2)
             result.value.insert(result.value.begin(), (unsigned int) (1));
     }
-    for (int i = bigger.value.size() - smaller.value.size() - 1; i >= 0; i--){
-        if(result.value[0] == (unsigned int)(1) && i == bigger.value.size() - smaller.value.size() - 1){
+    for (int i = bigger.value.size() - smaller.value.size() - 1; i >= 0; i--) {
+        if (result.value[0] == (unsigned int) (1) && i == bigger.value.size() - smaller.value.size() - 1) {
             result.value[0] += bigger.value[i];
-        } else{
+        } else {
             result.value.insert(result.value.begin(), bigger.value[i]);
         }
     }
@@ -86,12 +87,15 @@ Large_Number Large_Number::operator-(const Large_Number &other) const {
         if (this->value[greater_index] < other.value[i])
             result.value.insert(result.value.begin(), (unsigned int) (0 - 1));
     }
-    for (int i = this->value.size() - other.value.size() - 1; i >= 0; i--){
-        if(result.value[0] == (unsigned int)(0 - 1) && i == this->value.size() - other.value.size() - 1){
+    for (int i = this->value.size() - other.value.size() - 1; i >= 0; i--) {
+        if (result.value[0] == (unsigned int) (0 - 1) && i == this->value.size() - other.value.size() - 1) {
             result.value[0] += this->value[i];
-        } else{
+        } else {
             result.value.insert(result.value.begin(), this->value[i]);
         }
+    }
+    while (result.value[0] == 0 && result.value.size() > 1) {
+        result.value.erase(result.value.begin());
     }
     result.modN();
     return result;
@@ -113,7 +117,7 @@ Large_Number Large_Number::operator++() {
 Large_Number Large_Number::modInverse() {
     Large_Number indexA, indexB, one, res;
     one.value.push_back((unsigned int) (1));
-    Large_Number g = Large_Number::gcdExtended( *this,*this->N, &indexA, &indexB);
+    Large_Number g = Large_Number::gcdExtended(*this, *this->N, &indexA, &indexB);
     if (!(g == one)) {
         res.value.push_back((unsigned int) (0));
         return res;
@@ -132,7 +136,7 @@ Large_Number Large_Number::gcdExtended(Large_Number a, Large_Number b, Large_Num
         return b;
     }
     Large_Number x1, y1;
-    Large_Number temp = b - (wholePart(a,b)*a);
+    Large_Number temp = b - (wholePart(a, b) * a);
     Large_Number gcd = Large_Number::gcdExtended(temp, a, &x1, &y1);
     *indexA = y1 - ((wholePart(a, b)) * x1);
     *indexB = x1;
@@ -141,17 +145,17 @@ Large_Number Large_Number::gcdExtended(Large_Number a, Large_Number b, Large_Num
 
 Large_Number Large_Number::wholePart(Large_Number a, Large_Number b) {
     Large_Number x;
-    while (b.value[0] == 0 && b.value.size() > 1){
+    while (b.value[0] == 0 && b.value.size() > 1) {
         b.value.erase(b.value.begin());
     }
-    if(a < b){
+    if (a < b) {
         x.value.push_back(1);
         Large_Number temp = a;
-        while(temp < b){
+        while (temp < b) {
             temp = temp.multiply_by_digit(2);
             x = x.multiply_by_digit(2);
         }
-        return x - wholePart(a,temp - b);
+        return x - wholePart(a, temp - b);
     } else return Large_Number(0);
 
 }
@@ -169,31 +173,31 @@ void Large_Number::modN() {
     auto temp = *this;
 
     if (!(temp < *N)) {
-        *this -= *N;
+        auto tempN = *N;
+        for(;tempN.value.size() < temp.value.size();tempN.value.push_back(0))
+            continue;
+        if(tempN > temp)
+            tempN.value.pop_back();
+        for(;tempN.multiply_by_digit(2) < temp;tempN = tempN.multiply_by_digit(2))
+            continue;
+        *this -= tempN;
         modN();
     }
 }
 
 
+
 Large_Number Large_Number::multiply_by_digit(unsigned int digit) {
     Large_Number result;
     result.value.insert(result.value.begin(), (unsigned int) 0);
-    for (int i = value.size() - 1;i>=0;i--) {
+    for (int i = value.size() - 1; i >= 0; i--) {
         unsigned int my_digit = value[i];
         result.value[0] += my_digit * digit;
 
         uint64_t temp = (uint64_t) my_digit;
         uint64_t temp2 = (uint64_t) digit;
-        unsigned int quotient =(unsigned int) (((temp2*temp) - (uint64_t)(my_digit*digit))/pow(2,32));
-//        while (temp2 > 0 && sqrt((double) my_digit) * sqrt((double) temp2) < halfCheck) {
-//            if (temp + my_digit < my_digit || temp + my_digit < temp)
-//                quotient++;
-//            temp += my_digit;
-//            temp2--;
-//        }
-//
-//        if (temp + my_digit * digit < temp || temp + my_digit * digit < my_digit * digit)
-//            quotient++;
+        unsigned int quotient = (unsigned int) (((temp2 * temp) - (uint64_t) (my_digit * digit)) / pow(2, 32));
+
 
         result.value.insert(result.value.begin(), (unsigned int) quotient);
     }
@@ -218,7 +222,7 @@ Large_Number Large_Number::operator*(const Large_Number &other) const {
         }
 
         result = result + adding;
-
+        result.modN();
     }
     result.modN();
     return result;
@@ -226,16 +230,20 @@ Large_Number Large_Number::operator*(const Large_Number &other) const {
 
 
 bool Large_Number::operator<(int i) {
+
+    while (value[0] == 0 && value.size() > 1) {
+        value.erase(value.begin());
+    }
     if (value.size() > 1)
-        return false;
+        return value[0] < 0;
     if (value.size() < 1)
         return true;
     return value[0] < i;
 }
 
 Large_Number::Large_Number(const Large_Number &other) :
-                N(other.N),
-                value(other.value){}
+        N(other.N),
+        value(other.value) {}
 
 Large_Number::Large_Number() {
     setN("57970cd7e29336813af");
@@ -273,14 +281,13 @@ Large_Number::Large_Number(unsigned int number) {
 Large_Number::Large_Number(string s) {
     setN("57970cd7e29336813af");
 
-    do{
+    do {
 
         string digit_str;
-        if(s.length() >= 8){
+        if (s.length() >= 8) {
             digit_str = s.substr(s.length() - 8, 8);
-            s.erase(s.length() - 8,8);
-        }
-        else{
+            s.erase(s.length() - 8, 8);
+        } else {
             digit_str = s;
             s.clear();
         }
@@ -291,7 +298,7 @@ Large_Number::Large_Number(string s) {
 
         value.insert(value.begin(), x);
 
-    }while (s.length() > 0);
+    } while (s.length() > 0);
 }
 
 Large_Number Large_Number::operator++(int) {
@@ -300,11 +307,11 @@ Large_Number Large_Number::operator++(int) {
     return temp;
 }
 
-std::string Large_Number::to_string() const  {
+std::string Large_Number::to_string() const {
     std::stringstream stream;
     for (auto &i : value) {
         stream << std::setfill('0')
-               << std::setw(sizeof(int32_t)*2)
+               << std::setw(sizeof(int32_t) * 2)
                << std::hex << i;
     }
     auto result = stream.str();
@@ -313,18 +320,17 @@ std::string Large_Number::to_string() const  {
 }
 
 void Large_Number::setN(string s) {
-    N = new Large_Number(s,true);
+    N = new Large_Number(s, true);
 }
 
 Large_Number::Large_Number(string s, bool isN) {
-    do{
+    do {
 
         string digit_str;
-        if(s.length() >= 8){
+        if (s.length() >= 8) {
             digit_str = s.substr(s.length() - 8, 8);
-            s.erase(s.length() - 8,8);
-        }
-        else{
+            s.erase(s.length() - 8, 8);
+        } else {
             digit_str = s;
             s.clear();
         }
@@ -335,5 +341,5 @@ Large_Number::Large_Number(string s, bool isN) {
 
         value.insert(value.begin(), x);
 
-    }while (s.length() > 0);
+    } while (s.length() > 0);
 }
