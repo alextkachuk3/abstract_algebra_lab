@@ -67,7 +67,7 @@ public:
 
     Large_Number operator++(int);
 
-    Large_Number gcdExtended(Large_Number a, Large_Number b, Large_Number *indexA, Large_Number *indexB);
+    Large_Number gcdExtended(Large_Number a, Large_Number b, Large_Number &indexA, Large_Number &indexB, bool &indexA_isNeg,bool &indexB_isNeg);
 
     Large_Number modInverse();
 

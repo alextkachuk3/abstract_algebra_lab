@@ -115,31 +115,70 @@ Large_Number Large_Number::operator++() {
 }
 
 Large_Number Large_Number::modInverse() {
-    Large_Number indexA, indexB, one, res;
-    one.value.push_back((unsigned int) (1));
-    Large_Number g = Large_Number::gcdExtended(*this, *this->N, &indexA, &indexB);
+    Large_Number indexA, indexB, res;
+    Large_Number one(1);
+    bool indexA_isNeg, indexB_isNeg = false;
+    Large_Number g = Large_Number::gcdExtended(*this, *this->N, indexA, indexB,indexA_isNeg,indexB_isNeg);
     if (!(g == one)) {
         res.value.push_back((unsigned int) (0));
         return res;
     } else {
-        res = (indexA + *this);
+        res = indexA;
     }
     return res;
 }
 
-Large_Number Large_Number::gcdExtended(Large_Number a, Large_Number b, Large_Number *indexA, Large_Number *indexB) {
-    Large_Number zero;
-    zero.value.push_back((unsigned int) (0));
+Large_Number Large_Number::gcdExtended(Large_Number a, Large_Number b, Large_Number &indexA, Large_Number &indexB,bool &indexA_isNeg,bool &indexB_isNeg) {
+    const Large_Number zero(0);
+    const Large_Number one(1);
     if (a == zero) {
-        indexA->value.push_back((unsigned int) (0));
-        indexB->value.push_back((unsigned int) (1));
+        indexA = zero;
+        indexB = one;
         return b;
     }
     Large_Number x1, y1;
-    Large_Number temp = b - (wholePart(a, b) * a);
-    Large_Number gcd = Large_Number::gcdExtended(temp, a, &x1, &y1);
-    *indexA = y1 - ((wholePart(a, b)) * x1);
-    *indexB = x1;
+    Large_Number whole = wholePart(a, b);
+    Large_Number temp = b - (whole * a);
+    Large_Number gcd = Large_Number::gcdExtended(temp, a, x1, y1,indexA_isNeg,indexB_isNeg);
+    if (!indexA_isNeg && !indexB_isNeg){
+        if (y1 < wholePart(a,b)*x1){
+            indexA_isNeg = true;
+            indexA = (wholePart(a, b)) * x1 - y1;
+        } else{
+            indexA = y1 - (wholePart(a, b)) * x1;
+            indexA_isNeg = false;
+        }
+        indexB = x1;
+        indexB_isNeg = false;
+    }
+    if (indexA_isNeg && !indexB_isNeg){
+
+        indexA = (wholePart(a, b)) * x1 + y1;
+        indexA_isNeg = false;
+        indexB = x1;
+        indexB_isNeg = true;
+    }
+    if (indexA_isNeg && indexB_isNeg){
+        if (!(y1 > wholePart(a,b)*x1)){
+            indexA_isNeg = false;
+            indexA = (wholePart(a, b)) * x1 - y1;
+        } else{
+            indexA_isNeg = true;
+            indexA = (wholePart(a, b)) * x1 - y1;
+        }
+        indexB = x1;
+        indexB_isNeg = true;
+    }
+    if (!indexA_isNeg && indexB_isNeg){
+
+        indexA = (wholePart(a, b)) * x1 + y1;
+        indexA_isNeg = true;
+        indexB = x1;
+        indexB_isNeg = false;
+    }
+
+
+
     return gcd;
 }
 
@@ -151,12 +190,21 @@ Large_Number Large_Number::wholePart(Large_Number a, Large_Number b) {
     if (a < b) {
         x.value.push_back(1);
         Large_Number temp = a;
-        while (temp < b) {
+        while (!(temp > b)) {
             temp = temp.multiply_by_digit(2);
             x = x.multiply_by_digit(2);
         }
-        return x - wholePart(a, temp - b);
-    } else return Large_Number(0);
+        Large_Number res = x - wholePart(a, temp - b);
+        if (a*res == b){
+            return res;
+        }
+        else{
+            Large_Number one(1);
+            return res - one;
+        }
+
+    } else if(a == b) return Large_Number(1);
+    else return Large_Number(0);
 
 }
 
