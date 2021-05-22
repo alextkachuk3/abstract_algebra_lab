@@ -123,7 +123,7 @@ Large_Number Large_Number::modInverse() {
         res.value.push_back((unsigned int) (0));
         return res;
     } else {
-        res = indexA;
+        res = *N - indexA;
     }
     return res;
 }
@@ -268,11 +268,10 @@ Large_Number Large_Number::operator*(const Large_Number &other) const {
             adding.value.push_back((unsigned int) 0);
             number_shifts--;
         }
-
+        adding.modN();
         result = result + adding;
         result.modN();
     }
-    result.modN();
     return result;
 }
 
