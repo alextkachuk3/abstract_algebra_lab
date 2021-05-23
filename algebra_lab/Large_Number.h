@@ -72,7 +72,7 @@ public:
 
     Large_Number modInverse();
 
-    Large_Number generate_random_number();
+    static Large_Number generate_random_number();
 
     Large_Number wholePart(Large_Number a, Large_Number b);
 

@@ -7,6 +7,7 @@ project ("algebra_lab")
 
 # Включите подпроекты.
 add_subdirectory ("algebra_lab")
+add_subdirectory ("Boost_tests")
 #add_subdirectory(lib)
 #include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
 
