@@ -2,7 +2,7 @@
 
 namespace ttp
 {
-	void startTesting(float maxTime, std::size_t numberOfOperations)
+	void startTimeTesting(float maxTime, std::size_t numberOfOperations)
 	{
 		std::random_device rd;
 		std::mt19937 mersenne(rd());
