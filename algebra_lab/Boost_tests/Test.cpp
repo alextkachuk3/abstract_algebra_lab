@@ -98,4 +98,19 @@ BOOST_FIXTURE_TEST_CASE(Division, LN)
     BOOST_CHECK_EQUAL(result.to_string(), "210000000000000000");
 
 }
+BOOST_FIXTURE_TEST_CASE(modInverse, LN)
+{
+    firstNum->value.push_back((unsigned int)(72));
+    Large_Number result = firstNum->modInverse();
+    BOOST_CHECK_EQUAL(result.to_string(), "565f9e7154c2f231369");
+
+    firstNum->value.push_back((unsigned int)(-786));
+    result = firstNum->modInverse();
+    BOOST_CHECK_EQUAL(result.to_string(), "514b0fa3549396a6fd3");
+
+    firstNum->value.push_back((unsigned int)(0));
+    result = firstNum->modInverse();
+    BOOST_CHECK_EQUAL(result.to_string(), "3fdfddbe84d54fe0c34");
+
+}
 
