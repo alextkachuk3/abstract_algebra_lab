@@ -1,5 +1,4 @@
 #include "large_number_pow.h"
-#include <iostream>
 namespace ln
 {
     Number powNaive(const Number& number, const Number& exp, const Number& modulus)
@@ -14,10 +13,10 @@ namespace ln
     Number powNumber(const Number& number, const Number& exp, const Number& modulus)
     {
         if (exp == Number(unsigned(0))) return Number(unsigned(1));
-        if (exp == Number(unsigned(1))) return number;
+        if (exp == Number(unsigned(1))) return mod(number, modulus);
         unsigned base = 10;
         //if(number.N) modulus = *(number.N);// will take in Large_Nuber as N
-        unsigned modulusLength = length(modulus, base);
+        unsigned modulusLength = length(modulus, Number(base));
         Number numberR = Number(unsigned(0));
         if (modulusLength > 9) numberR = powNumber(Number(base), Number(modulusLength), modulus);
         else numberR = Number(unsigned(pow(base, modulusLength))) % modulus;//10^9 < MAX_UNSIGNED

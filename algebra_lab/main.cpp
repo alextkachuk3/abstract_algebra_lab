@@ -1,16 +1,16 @@
 ﻿#include <iostream>
 //#include "Sqrt.h"
 //#include "Large_Number.h"
-#include "large_number_pow.h"
 #include "phi_and_lambda.h"
 #include "Primal_1.h"
 #include "Pollard_Rho.h"
-#include "test_pow.h"
+#include "pow/large_number_pow.h"
+#include "pow/test_pow.h"
 //#include "discrete_logarithm.cpp"
 using namespace std;
 
-int main()
-{	
+void startAllTestes()
+{
 	{ // Tests for large_number_pow
 		TestRunner tr;
 		RUN_TEST(tr, TestPowNumber);
@@ -18,6 +18,11 @@ int main()
 		RUN_TEST(tr, TestLength);
 		RUN_TEST(tr, TestGcd);
 	}
+}
+int main()
+{	
+	//startAllTestes();
+
 	//long long q;
 	//cin >> q;
 	//while (q)
