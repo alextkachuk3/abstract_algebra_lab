@@ -9,12 +9,16 @@ project ("algebra_lab")
 # target_link_libraries(${PROJECT_NAME} "D:/Programs/ProgrammingEnvironment/Librares/gmp-6.1.1/lib/libgmp.a")
 # Включите подпроекты.
 add_subdirectory ("algebra_lab")
-add_subdirectory(Boost_tests)
 #add_subdirectory(lib)
 #include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
 
 # target_link_libraries(ExecutableName ${GOBJECT_LIBRARIES})
-
+set(SOURCE_FILES main.cpp)
+add_executable(algebra_lab_run ${SOURCE_FILES})
+include_directories(Large_Number)
+add_subdirectory(Large_Number)
+target_link_libraries(algebra_lab_run Large_Number)
+add_subdirectory(Boost_tests)
 
 
 
