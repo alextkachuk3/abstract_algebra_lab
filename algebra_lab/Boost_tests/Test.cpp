@@ -58,26 +58,44 @@ BOOST_FIXTURE_TEST_CASE(Minus, LN)
     BOOST_CHECK_EQUAL(result.to_string(), "9fffe1dfcfffe1d84");
 }
 
-BOOST_FIXTURE_TEST_CASE(Multiple1, LN)
+
+BOOST_FIXTURE_TEST_CASE(Multiple, LN)
 {
     Large_Number result;
     firstNum->value.push_back((unsigned int)(56));
-    cout << secondNum->to_string() << endl;
     secondNum->value.push_back((unsigned int)(6784));
-    cout << secondNum->to_string() << endl;
     result = *firstNum * *secondNum;
-    BOOST_CHECK_EQUAL(result.to_string(), "10005cc00");
+    BOOST_CHECK_EQUAL(result.to_string(),"5cc00");
 
-}
-
-BOOST_FIXTURE_TEST_CASE(Multiple2, LN)
-{
-    Large_Number result;
     firstNum->value.push_back((unsigned int)(36));
-    cout << secondNum->to_string() << endl;
     secondNum->value.push_back((unsigned int)(684));
-    cout << secondNum->to_string() << endl;
     result = *firstNum * *secondNum;
-    BOOST_CHECK_EQUAL(result.to_string(), "100006030");
+    BOOST_CHECK_EQUAL(result.to_string(),"71967bc20294d389ef");
+
+    firstNum->value.push_back((unsigned int)(-536));
+    secondNum->value.push_back((unsigned int)(4684));
+    result = *firstNum * *secondNum;
+    BOOST_CHECK_EQUAL(result.to_string(),"54df2093c80eab24bb0");
 
 }
+
+
+BOOST_FIXTURE_TEST_CASE(Division, LN)
+{
+    firstNum->value.push_back((unsigned int)(8632));
+    secondNum->value.push_back((unsigned int)(167480));
+    Large_Number result = *firstNum / *secondNum;
+    BOOST_CHECK_EQUAL(result.to_string(), "3223d1347923f4caf6");
+
+    firstNum->value.push_back((unsigned int)(60));
+    secondNum->value.push_back((unsigned int)(123456));
+    result = *firstNum / *secondNum;
+    BOOST_CHECK_EQUAL(result.to_string(), "7dd535c711d1b690e0");
+
+    firstNum->value.push_back((unsigned int)(550));
+    secondNum->value.push_back((unsigned int)(-9670));
+    result = *firstNum / *secondNum;
+    BOOST_CHECK_EQUAL(result.to_string(), "210000000000000000");
+
+}
+
