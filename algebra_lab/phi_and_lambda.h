@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "large_number_pow.h"
+#include "pow/large_number_pow.h"
 
 long long gcd(long long a, long long b);
 

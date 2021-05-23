@@ -1,5 +1,4 @@
 #include "large_number_pow.h"
-#include <iostream>
 namespace ln
 {
     Number powNaive(const Number& number, const Number& exp, const Number& modulus)
