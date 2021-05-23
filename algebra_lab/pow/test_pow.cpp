@@ -113,7 +113,7 @@ void TestDecomposExp() {
 void TestLength() {
 	// base 2
 	ASSERT_EQUAL(length(Number(31), Number(2)), 5);
-	ASSERT_EQUAL(length(Number(32),Number(2)), 6);
+	ASSERT_EQUAL(length(Number(32), Number(2)), 6);
 	ASSERT_EQUAL(length(Number(33), Number(2)), 6);
 	ASSERT_EQUAL(length(Number(1023), Number(2)), 10);
 	ASSERT_EQUAL(length(Number(1024), Number(2)), 11);
@@ -121,37 +121,38 @@ void TestLength() {
 	ASSERT_EQUAL(length(Number(1028476), Number(2)), 20);
 	ASSERT_EQUAL(length(Number(1048576), Number(2)), 21);
 	ASSERT_EQUAL(length(Number(1048576), Number(2)), 21);
-    ASSERT_EQUAL(length(Number(17176219484), Number(2)), 34);
+	ASSERT_EQUAL(length(Number(17176219484), Number(2)), 34);
 	ASSERT_EQUAL(length(Number(17179869184), Number(2)), 35);
 	ASSERT_EQUAL(length(Number(17676821184), Number(2)), 35);
-	// base 33
-	ASSERT_EQUAL(length(Number(41), Number(33)), 2);
-	ASSERT_EQUAL(length(Number(42), Number(33)), 2);
-	ASSERT_EQUAL(length(Number(43), Number(33)), 2);
-	ASSERT_EQUAL(length(Number(1088), Number(33)), 2);
-	ASSERT_EQUAL(length(Number(1089), Number(33)), 3);
-	ASSERT_EQUAL(length(Number(22139), Number(33)), 3); 
-	ASSERT_EQUAL(length(Number(35936), Number(33)), 3);
-	ASSERT_EQUAL(length(Number(333245), Number(33)), 4);
-	ASSERT_EQUAL(length(Number(39135392), Number(33)), 5);
-	ASSERT_EQUAL(length(Number(39535382), Number(33)), 6);
-	ASSERT_EQUAL(length(Number(1406408618240), Number(33)), 8);
-	ASSERT_EQUAL(length(Number(1406408618242), Number(33)), 9);
-	// base 142
-	ASSERT_EQUAL(length(Number(3), Number(142)), 1);
-	ASSERT_EQUAL(length(Number(52), Number(142)), 1);
-	ASSERT_EQUAL(length(Number(141), Number(142)), 1);
-	ASSERT_EQUAL(length(Number(543), Number(142)), 2);
-	ASSERT_EQUAL(length(Number(7412), Number(142)), 2);
-	ASSERT_EQUAL(length(Number(20163), Number(142)), 2);
-	ASSERT_EQUAL(length(Number(91001), Number(142)), 3);
-	ASSERT_EQUAL(length(Number(52841867194), Number(142)), 5);
-	ASSERT_EQUAL(length(Number(92841867194), Number(142)), 6);
-	ASSERT_EQUAL(length(Number(323841888194), Number(142)), 6);
-	ASSERT_EQUAL(length(Number(8198418170944), Number(142)), 7);
-	ASSERT_EQUAL(length(Number(234744323678459038), Number(142)), 9);
-	ASSERT_EQUAL(length(Number(534944623678459038), Number(142)), 9);
+	// base 10
+	ASSERT_EQUAL(length(Number(41), Number(10)), 2);
+	ASSERT_EQUAL(length(Number(42), Number(10)), 2);
+	ASSERT_EQUAL(length(Number(43), Number(10)), 2);
+	ASSERT_EQUAL(length(Number(1088), Number(10)), 4);
+	ASSERT_EQUAL(length(Number(1089), Number(10)), 4);
+	ASSERT_EQUAL(length(Number(22139), Number(10)), 5);
+	ASSERT_EQUAL(length(Number(35936), Number(10)), 5);
+	ASSERT_EQUAL(length(Number(333245), Number(10)), 6);
+	ASSERT_EQUAL(length(Number(39135392), Number(10)), 8);
+	ASSERT_EQUAL(length(Number(39535382), Number(10)), 8);
+	ASSERT_EQUAL(length(Number(1406408618240), Number(10)), 13);
+	ASSERT_EQUAL(length(Number(1406408618242), Number(10)), 13);
+	// base 16
+	ASSERT_EQUAL(length(Number(3), Number(16)), 1);
+	ASSERT_EQUAL(length(Number(52), Number(16)), 2);
+	ASSERT_EQUAL(length(Number(141), Number(16)), 2);
+	ASSERT_EQUAL(length(Number(543), Number(16)), 3);
+	ASSERT_EQUAL(length(Number(7412), Number(16)), 4);
+	ASSERT_EQUAL(length(Number(20163), Number(16)), 4);
+	ASSERT_EQUAL(length(Number(91001), Number(16)), 5);
+	ASSERT_EQUAL(length(Number(52841867194), Number(16)), 9);
+	ASSERT_EQUAL(length(Number(92841867194), Number(16)), 10);
+	ASSERT_EQUAL(length(Number(323841888194), Number(16)), 10);
+	ASSERT_EQUAL(length(Number(8198418170944), Number(16)), 11);
+	ASSERT_EQUAL(length(Number(234744323678459038), Number(16)), 15);
+	ASSERT_EQUAL(length(Number(534944623678459038), Number(16)), 15);
 }
+
 
 void TestGcd() {
 	// gcd(Number(*1*),Number(*2*))
