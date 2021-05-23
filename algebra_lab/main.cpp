@@ -9,8 +9,8 @@
 //#include "discrete_logarithm.cpp"
 using namespace std;
 
-int main()
-{	
+void startAllTestes()
+{
 	{ // Tests for large_number_pow
 		TestRunner tr;
 		RUN_TEST(tr, TestPowNumber);
@@ -18,6 +18,11 @@ int main()
 		RUN_TEST(tr, TestLength);
 		RUN_TEST(tr, TestGcd);
 	}
+}
+int main()
+{	
+	//startAllTestes();
+
 	//long long q;
 	//cin >> q;
 	//while (q)
