@@ -15,10 +15,11 @@ namespace ln
         if (exp == Number(unsigned(0))) return Number(unsigned(1));
         if (exp == Number(unsigned(1))) return mod(number, modulus);
         unsigned base = 10;
+        unsigned maxLength = length(Number(std::numeric_limits<unsigned>::max()), Number(base)) - 1;
         //if(number.N) modulus = *(number.N);// will take in Large_Nuber as N
         unsigned modulusLength = length(modulus, Number(base));
         Number numberR = Number(unsigned(0));
-        if (modulusLength > 9) numberR = powNumber(Number(base), Number(modulusLength), modulus);
+        if (modulusLength > maxLength) numberR = powNumber(Number(base), Number(modulusLength), modulus);
         else numberR = Number(unsigned(pow(base, modulusLength))) % modulus;//10^9 < MAX_UNSIGNED
         Number rInv = Number(unsigned(0)), modulusInv = Number(unsigned(0));
         Number gcs = gcdExtended(numberR, modulus, rInv, modulusInv);
