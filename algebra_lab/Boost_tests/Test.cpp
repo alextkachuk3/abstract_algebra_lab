@@ -57,3 +57,27 @@ BOOST_FIXTURE_TEST_CASE(Minus, LN)
     result = *firstNum - *secondNum;
     BOOST_CHECK_EQUAL(result.to_string(), "9fffe1dfcfffe1d84");
 }
+
+BOOST_FIXTURE_TEST_CASE(Multiple1, LN)
+{
+    Large_Number result;
+    firstNum->value.push_back((unsigned int)(56));
+    cout << secondNum->to_string() << endl;
+    secondNum->value.push_back((unsigned int)(6784));
+    cout << secondNum->to_string() << endl;
+    result = *firstNum * *secondNum;
+    BOOST_CHECK_EQUAL(result.to_string(), "10005cc00");
+
+}
+
+BOOST_FIXTURE_TEST_CASE(Multiple2, LN)
+{
+    Large_Number result;
+    firstNum->value.push_back((unsigned int)(36));
+    cout << secondNum->to_string() << endl;
+    secondNum->value.push_back((unsigned int)(684));
+    cout << secondNum->to_string() << endl;
+    result = *firstNum * *secondNum;
+    BOOST_CHECK_EQUAL(result.to_string(), "100006030");
+
+}
