@@ -14,7 +14,7 @@ namespace ln
     Number powNumber(const Number& number, const Number& exp, const Number& modl)
     {
         Number modulus = modl;
-        if(number.N) modulus = Number("57970cd7e29336813af");// will take in Large_Nuber as N
+        //if(number.N) modulus = Number(number.N->to_string());// will take in Large_Nuber as N
         if (exp == Number(unsigned(0))) return Number(unsigned(1));
         if (exp == Number(unsigned(1))) return mod(number, modulus);
         unsigned base = 10;

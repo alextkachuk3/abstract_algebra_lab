@@ -38,5 +38,6 @@ int main()
 	/*Primal_1();
 	long long n = 23423423423423;
 	pollard_rho(n);*/
+	std::cout << Large_Number(10) / Large_Number(5);
 	return 0;
 }
