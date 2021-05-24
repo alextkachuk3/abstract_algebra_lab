@@ -1,4 +1,5 @@
 #include "large_number_pow.h"
+#include <iostream>
 namespace ln
 {
     Number powNaive(const Number& number, const Number& exp, const Number& modulus)
@@ -10,14 +11,15 @@ namespace ln
         }
         return res % modulus;
     }
-    Number powNumber(const Number& number, const Number& exp, const Number& modulus)
+    Number powNumber(const Number& number, const Number& exp, const Number& modl)
     {
+        Number modulus = modl;
+        if(number.N) modulus = Number("57970cd7e29336813af");// will take in Large_Nuber as N
         if (exp == Number(unsigned(0))) return Number(unsigned(1));
         if (exp == Number(unsigned(1))) return mod(number, modulus);
         unsigned base = 10;
-        unsigned maxLength = length(Number(std::numeric_limits<unsigned>::max()), Number(base)) - 1;
-        //if(number.N) modulus = *(number.N);// will take in Large_Nuber as N
-        unsigned modulusLength = length(modulus, Number(base));
+        unsigned maxLength = length(std::numeric_limits<unsigned>::max(), base) - 1;             
+        unsigned modulusLength = length(modulus, base);
         Number numberR = Number(unsigned(0));
         if (modulusLength > maxLength) numberR = powNumber(Number(base), Number(modulusLength), modulus);
         else numberR = Number(unsigned(pow(base, modulusLength))) % modulus;//10^9 < MAX_UNSIGNED
@@ -60,16 +62,6 @@ namespace ln
             part = part / Number(unsigned(2));
         }
         return arr;
-    }
-    unsigned length(Number number, const Number& base)
-    {
-        unsigned res = 0;
-        while (number > Number(unsigned(0)))
-        {
-            number = number / base;
-            res++;
-        }
-        return res;
     }
     Number gcdExtended(const Number& numberR, const Number& numberN, Number& rInv, Number& nInv)
     {

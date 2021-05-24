@@ -4,7 +4,7 @@
 #include <vector>
 namespace ln//large number
 {
-	using Number = long long;
+	using Number = Large_Number;//long long;
 	/**
 	* \brief Modular exponentiation naive algorithm for raising a number to a power (by modulus).
 	* \param number - a number that will be raised
@@ -48,7 +48,8 @@ namespace ln//large number
 	* \param base - base of a number system
 	* \returns length of number
 	*/
-	unsigned length(Number number, const Number& base);
+	template<typename T>
+	unsigned length(T number, const unsigned& base);
 	/**
 	* \brief Extended Euclidean algorithm.
 	* 
@@ -62,4 +63,18 @@ namespace ln//large number
 	* It is not equal operator%.
 	*/
 	Number mod(const Number& number, const Number& modulus);
+}
+namespace ln
+{
+	template<typename T>
+	unsigned length(T number, const unsigned& base)
+	{
+		unsigned res = 0;
+		while (number > T(0))
+		{
+			number = number / base;
+			res++;
+		}
+		return res;
+	}
 }
