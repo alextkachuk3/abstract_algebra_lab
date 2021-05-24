@@ -1,5 +1,5 @@
 #include "task10.h"
-Large_Number power(Large_Number& x, Large_Number& y, Large_Number& p)
+Large_Number power(Large_Number x, Large_Number y, Large_Number p)
 {
     Large_Number two(2);
     Large_Number res(1);
@@ -13,7 +13,7 @@ Large_Number power(Large_Number& x, Large_Number& y, Large_Number& p)
     }
     return res;
 }
-bool miillerTest(Large_Number& d, Large_Number& n)
+bool miillerTest(Large_Number& d, Large_Number n)
 {
     Large_Number nm=n; nm.value[nm.value.size()-1]-=1;
     if (nm.value[nm.value.size()-1]>4) nm.value[nm.value.size()-1]=nm.value[nm.value.size()-1]-3;
@@ -38,11 +38,11 @@ bool miillerTest(Large_Number& d, Large_Number& n)
     }
     return false;
 }
-bool isPrime(Large_Number& n, int k)
+bool isPrime(Large_Number n, int k)
 {
     Large_Number two(2);
     Large_Number d = n; d.value[d.value.size()-1]--;
-    while (d % two == 0) {
+    while (d % two == 0 ) {
         d = d / two;
     }
     for (int i = 0; i < k; i++)
