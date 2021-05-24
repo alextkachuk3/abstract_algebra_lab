@@ -1,6 +1,7 @@
 //
 // Created by aaade on 13.03.2021.
 //
+
 #include "Large_Number.h"
 
 bool Large_Number::operator<(const Large_Number &other) const {
@@ -189,7 +190,7 @@ Large_Number Large_Number::wholePart(Large_Number a, Large_Number b) {
     if (a < b) {
         x.value.push_back(1);
         Large_Number temp = a;
-        while (!(temp > b)) {
+        while (temp < b) {
             temp = temp.multiply_by_digit(2);
             x = x.multiply_by_digit(2);
         }
@@ -292,7 +293,7 @@ Large_Number::Large_Number(const Large_Number &other) :
         value(other.value) {}
 
 Large_Number::Large_Number() {
-    setN("57970cd7e29336813af");
+    setN(N_str);
 }
 
 Large_Number Large_Number::operator=(const Large_Number &other) {
@@ -317,16 +318,15 @@ Large_Number Large_Number::operator%(const Large_Number &other) const {
     Large_Number quotient = temp.wholePart(other,temp);
     auto product = quotient * other;
     return *this - product;
-
 }
 
 Large_Number::Large_Number(unsigned int number) {
     (*this).value.push_back(number);
-    setN("57970cd7e29336813af");
+    setN(N_str);
 }
 
 Large_Number::Large_Number(string s) {
-    setN("57970cd7e29336813af");
+    setN(N_str);
 
     do {
 
