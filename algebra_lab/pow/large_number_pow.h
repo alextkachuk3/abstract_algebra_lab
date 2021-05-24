@@ -4,7 +4,7 @@
 #include <vector>
 namespace ln//large number
 {
-	using Number = Large_Number;//long long; //
+	using Number = long long; //Large_Number;//
 	/**
 	* \brief Modular exponentiation naive algorithm for raising a number to a power (by modulus).
 	* \param number - a number that will be raised

@@ -27,9 +27,9 @@ void startAllTestes()
 int main()
 {	
 	startAllTestes();
-	ln::Number number(12, "43"), exp(5, "43");
+	/*ln::Number number(12, "43"), exp(5, "43");
 	std::cout << ln::powNumber(number, exp) << std::endl;
-	std::cout << ln::powNaive(number, exp) << std::endl;
+	std::cout << ln::powNaive(number, exp) << std::endl;*/
 
 	return 0;
 }

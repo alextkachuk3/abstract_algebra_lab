@@ -5,7 +5,7 @@ namespace ln
     Number powNaive(const Number& number, const Number& exp, const Number& modl)
     {
         Number modulus = modl;
-        if (number.N) modulus = Number(number.N->to_string());
+        //if (number.N) modulus = Number(number.N->to_string());
         Number res = Number(unsigned(1));
         for (Number i = Number(unsigned(1)); i < exp + Number(unsigned(1)); i++)
         {
@@ -16,7 +16,7 @@ namespace ln
     Number powNumber(const Number& number, const Number& exp, const Number& modl)
     {
         Number modulus = modl;
-        if(number.N) modulus = Number(number.N->to_string());// will take in Large_Nuber as N
+        //if(number.N) modulus = Number(number.N->to_string());// will take in Large_Nuber as N
         if (exp == Number(unsigned(0))) return Number(unsigned(1));
         if (exp == Number(unsigned(1))) return mod(number, modulus);
         unsigned base = 10;
