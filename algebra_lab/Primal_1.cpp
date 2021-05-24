@@ -2,7 +2,7 @@
 //#include <iostream>
 #include "Primal_1.h"
 //#include "Large_Number.h"
-//#include "sqrt.h"
+#include "sqrt.h"
 using namespace std;
 void printPrimeFactors(long long n) {
     while (n % 2 == 0) {

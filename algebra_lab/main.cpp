@@ -2,11 +2,13 @@
 //#include "Sqrt.h"
 //#include "Large_Number.h"
 #include "phi_and_lambda.h"
-#include "Primal_1.h"
-#include "Pollard_Rho.h"
 #include "pow/large_number_pow.h"
 #include "pow/test_pow.h"
 #include "pow/time_testing_pow.h"
+
+#include "Primal_1.h"
+#include "Pollard_Rho.h"
+
 //#include "discrete_logarithm.cpp"
 using namespace std;
 
@@ -35,9 +37,10 @@ int main()
 	//}
 
 	//cout << p_h_tests() << endl;
-	/*Primal_1();
 	long long n = 23423423423423;
-	pollard_rho(n);*/
-	std::cout << Large_Number(10) / Large_Number(5);
+	// Primal_1();
+	
+	pollard_rho(n);
+	//std::cout << Large_Number(10) / Large_Number(5);
 	return 0;
 }
