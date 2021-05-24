@@ -23,7 +23,7 @@ namespace ln
         unsigned maxLength = length(std::numeric_limits<unsigned>::max(), base) - 1;             
         unsigned modulusLength = length(modulus, base);
         Number numberR = Number(unsigned(0));
-        if (modulusLength > maxLength) numberR = powNaive(Number(base), Number(modulusLength), modulus);
+        if (modulusLength > maxLength) numberR = powNumber(Number(base), Number(modulusLength), modulus);
         else numberR = Number(unsigned(pow(base, modulusLength))) % modulus;//10^9 < MAX_UNSIGNED
         Number rInv = Number(unsigned(0)), modulusInv = Number(unsigned(0));
         Number gcs = gcdExtended(numberR, modulus, rInv, modulusInv);
@@ -52,7 +52,7 @@ namespace ln
         unsigned len = length(exp, 2) - 1;
         std::vector<Number> arr;
         Number part = Number(unsigned(0));
-        if (len > 31) part = powNaive(Number(unsigned(2)), Number(len),modulus);
+        if (len > 31) part = powNumber(Number(unsigned(2)), Number(len),modulus);
         else part = Number(unsigned(pow(2, len)));
         while (exp > Number(unsigned(0)))
         {
