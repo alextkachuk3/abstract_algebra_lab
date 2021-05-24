@@ -25,7 +25,7 @@ namespace ln//large number
 	/**
 	* \brief Decomposes a number into an array using its binary representation.
 	*
-	* Example: exp = 13 = 2^0 + 2^2 + 2^3 = 1 + 4 + 8, result = {1,4,8}.
+	* Example: exp = 13 = 2^3 + 2^2 + 2^0 = 8 + 4 + 1, result = {8,4,1}.
 	*
 	* \param exp - a number that will be decomposed
 	*/
