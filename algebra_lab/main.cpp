@@ -23,7 +23,7 @@ void startAllTestes()
 }
 int main()
 {	
-	startAllTestes();
+	//startAllTestes();
 
 	//long long q;
 	//cin >> q;
