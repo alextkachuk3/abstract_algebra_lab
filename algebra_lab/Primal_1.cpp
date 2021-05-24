@@ -1,10 +1,11 @@
-//#include <math.h>
+#include <math.h>
 //#include <iostream>
 #include "Primal_1.h"
 //#include "Large_Number.h"
 #include "sqrt.h"
 using namespace std;
 void printPrimeFactors(long long n) {
+    cout << "Prime factors of " << n << " are :\t";
     while (n % 2 == 0) {
         cout << "2\t";
         n = n / 2;
@@ -20,9 +21,7 @@ void printPrimeFactors(long long n) {
 }
 void Primal_1() {
 
-    long long  n = 2934536785456656;
-    cout << "Prime factors of " << n << " are :\t";
-    printPrimeFactors(n);
+   
 }
 
 //#include <iostream>

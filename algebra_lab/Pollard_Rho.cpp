@@ -126,3 +126,6 @@ long long powmod1(long long a,long long k, const long long& n)
 //	return 1;
 //}
 //
+
+
+

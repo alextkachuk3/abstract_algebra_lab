@@ -1,16 +1,16 @@
 #include <iostream>
-#include "Sqrt.h"
-#include "Large_Number/Large_Number.h"
-#include "phi_and_lambda.h"
-#include "pow/large_number_pow.h"
-#include "pow/test_pow.h"
-#include "pow/time_testing_pow.h"
+//#include "Sqrt.h"
+//#include "Large_Number/Large_Number.h"
+//#include "phi_and_lambda.h"
+//#include "pow/large_number_pow.h"
+//#include "pow/test_pow.h"
+//#include "pow/time_testing_pow.h"
 
 #include "Primal_1.h"
 #include "Pollard_Rho.h"
 
 //#include "discrete_logarithm.cpp"
-#include "discrete_logarithm.h"
+//#include "discrete_logarithm.h"
 using namespace std;
 
 void startAllTestes()
@@ -42,8 +42,12 @@ int main()
 	//}
 
 	//cout << p_h_tests() << endl;
-	//long long n = 23423423423423;
-	//pollard_rho(n);*/
+	
 	//std::cout << (Large_Number(100) / Large_Number(50)).to_string();
+
+	long long  n = 2934536785456656;
+	
+	printPrimeFactors(n);
+
 	return 0;
 }
