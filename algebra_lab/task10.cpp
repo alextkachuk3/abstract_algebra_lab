@@ -46,7 +46,7 @@ bool isPrime(Large_Number n, int k)
         d = d / two;
     }
     for (int i = 0; i < k; i++)
-        if (!miillerTest(d,n))
+//        if (!miillerTest(d,n))
             return false;
 
     return true;

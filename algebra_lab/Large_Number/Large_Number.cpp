@@ -56,9 +56,9 @@ Large_Number Large_Number::operator+(const Large_Number& other) const {
         smaller = other;
     }
     for (int i = smaller.value.size() - 1; i >= 0; i--) {
-        int greater_index = i + this->value.size() - other.value.size();
-        unsigned int iter_res = this->value[greater_index] + other.value[i];
-        if (other.value.size() - i - 1 == result.value.size())
+        int greater_index = i + bigger.value.size() - smaller.value.size();
+        unsigned int iter_res = bigger.value[greater_index] + smaller.value[i];
+        if (smaller.value.size() - i - 1 == result.value.size())
             result.value.insert(result.value.begin(), iter_res);
         else {
             result.value[0] += iter_res;
