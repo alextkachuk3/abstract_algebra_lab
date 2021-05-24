@@ -19,7 +19,7 @@ namespace ln
         //if(number.N) modulus = Number(number.N->to_string());// will take in Large_Nuber as N
         if (exp == Number(unsigned(0))) return Number(unsigned(1));
         if (exp == Number(unsigned(1))) return mod(number, modulus);
-        unsigned base = 10;
+        unsigned base = 2;
         unsigned maxLength = length(std::numeric_limits<unsigned>::max(), base) - 1;             
         unsigned modulusLength = length(modulus, base);
         Number numberR = Number(unsigned(0));
