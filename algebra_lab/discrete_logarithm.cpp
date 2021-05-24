@@ -19,27 +19,27 @@ std::string int_to_hex(T i)
         << std::hex << i;
     return stream.str();
 }
-template <class Large_Number>
-Large_Number DiscreteLogarithmBsGs(Large_Number& a, Large_Number& b, const  Large_Number& m)
-{
-    long long num = std::stol(m.to_string(), nullptr, 16);
-    //cout << num;
-    Large_Number n(int_to_hex((long long)sqrt(num + .0) + 1));
-    //cout << n.to_string();
-    Large_Number an("1");
-    long long num_a = std::stol(a.to_string(), nullptr, 16);
-    long long num_m = std::stol(m.to_string(), nullptr, 16);
-    for (long long i = 0; i < std::stol(n.to_string(), nullptr, 16); ++i)//giant
-    {
-        /*       cout << a.to_string()<<endl;
-               cout << an.to_string() << endl;*/
-        long long num_an = std::stol(an.to_string(), nullptr, 16);
-        //cout << num_an << " " << num_a << " "<< num_m << endl;
-        long long res = (num_an * num_a) % num_m;
-        an = Large_Number(int_to_hex(res));
-        //cout << an.to_string();
-        //cout<<res<<" "<<int_to_hex(res)<<endl;
-    }// an = (an * a) % m;
+//template <class Large_Number>
+//Large_Number DiscreteLogarithmBsGs(Large_Number& a, Large_Number& b, const  Large_Number& m)
+//{
+//    long long num = std::stol(m.to_string(), nullptr, 16);
+//    //cout << num;
+//    Large_Number n(int_to_hex((long long)sqrt(num + .0) + 1));
+//    //cout << n.to_string();
+//    Large_Number an("1");
+//    long long num_a = std::stol(a.to_string(), nullptr, 16);
+//    long long num_m = std::stol(m.to_string(), nullptr, 16);
+//    for (long long i = 0; i < std::stol(n.to_string(), nullptr, 16); ++i)//giant
+//    {
+//        /*       cout << a.to_string()<<endl;
+//               cout << an.to_string() << endl;*/
+//        long long num_an = std::stol(an.to_string(), nullptr, 16);
+//        //cout << num_an << " " << num_a << " "<< num_m << endl;
+//        long long res = (num_an * num_a) % num_m;
+//        an = Large_Number(int_to_hex(res));
+//        //cout << an.to_string();
+//        //cout<<res<<" "<<int_to_hex(res)<<endl;
+//    }// an = (an * a) % m;
 
 Large_Number DiscreteLogarithm(Large_Number a, Large_Number b, Large_Number m) {
     //a %= m, b %= m;//doesent work
