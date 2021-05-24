@@ -1,5 +1,6 @@
 #include <iostream>
 #include <map>
+#include <unordered_map>
 #include <math.h>
 #include "Large_Number/Large_Number.h"
 #include "Sqrt.h"
@@ -49,16 +50,16 @@ Large_Number DiscreteLogarithm(Large_Number a, Large_Number b, Large_Number m) {
 
     Large_Number an = 1;
     for (Large_Number i = 0; i < n; ++i)
-        an = (an * 1ll * a) % m;
+        an = (an  * a) % m;
 
     map<Large_Number, Large_Number> vals;//doesnt work
     for (Large_Number q = 0, cur = b; q <= n; ++q) {
         vals[cur] = q;
-        cur = (cur * 1ll * a) % m;
+        cur = (cur  * a) % m;
     }
 
     for (Large_Number p = 1, cur = 1; p <= n; ++p) {
-        cur = (cur * 1ll * an) % m;
+        cur = (cur  * an) % m;
         if (vals.count(cur)) {
             Large_Number ans = n * p - vals[cur];
             return ans;
@@ -66,32 +67,26 @@ Large_Number DiscreteLogarithm(Large_Number a, Large_Number b, Large_Number m) {
     }
     return -1;
 }
-int DiscreteLogarithm(int a, int b, int m) {
-    //cout << m;
-    int n = (int)sqrt(m + .0) + 1;
-    //cout << n;
-    int an = 1;
-    for (int i = 0; i < n; ++i)
-    {
-        an = (an * a) % m;
-        //cout << an;
-    }
-    map<int, int> vals;
-    for (int i = 1, cur = an; i <= n; ++i) {
-        if (!vals.count(cur))
-            vals[cur] = i;
-        cur = (cur * an) % m;
-        //cout << cur;
+long long DiscreteLogarithm(long long a, long long b, long long m) {
+    a %= m, b %= m;
+    long long n = sqrt(m) + 1;
+
+    long long an = 1;
+    for (long long i = 0; i < n; ++i)
+        an = (an  * a) % m;
+
+    unordered_map<long long, long long> vals;
+    for (long long q = 0, cur = b; q <= n; ++q) {
+        vals[cur] = q;
+        cur = (cur  * a) % m;
     }
 
-    for (int i = 0, cur = b; i <= n; ++i) {
+    for (long long p = 1, cur = 1; p <= n; ++p) {
+        cur = (cur  * an) % m;
         if (vals.count(cur)) {
-            int ans = vals[cur] * n - i;
-            //cout << ans;
-            if (ans < m)
-                return ans;
+            long long ans = n * p - vals[cur];
+            return ans;
         }
-        cur = (cur * a) % m;
     }
     return -1;
 }
