@@ -1,29 +1,42 @@
-﻿#include <iostream>
-#include "Sqrt.h"
-#include "Large_Number.h"
-#include "large_number_pow.h"
-
+#include <iostream>
+//#include "Sqrt.h"
+//#include "Large_Number.h"
+#include "phi_and_lambda.h"
+#include "Primal_1.h"
+#include "Pollard_Rho.h"
+#include "pow/large_number_pow.h"
+#include "pow/test_pow.h"
+#include "pow/time_testing_pow.h"
+//#include "discrete_logarithm.cpp"
 using namespace std;
 
-
-
-
+void startAllTestes()
+{
+	{ // Tests for large_number_pow
+		TestRunner tr;
+		RUN_TEST(tr, TestPowNumber);
+		RUN_TEST(tr, TestDecomposExp);
+		RUN_TEST(tr, TestLength);
+		RUN_TEST(tr, TestGcd);
+		ttp::startTimeTesting();
+	}
+}
 int main()
 {	
-//	cout << "Hello CMake." << endl;
-////	Large_Number a("57970cd7e29336813b0");
-//	Large_Number a("9164e20e921b");
-//	Large_Number b("2B29F31C536004");
-//    Large_Number res = (b/a);
-////    Large_Number res = a.modInverse();
-//    Large_Number exp_res("2D45DFB4A91644D3C4029D64CD1860D");
-//    exp_res.modN();
-//
-//	cout << res.to_string() << endl;
-//    cout << exp_res.to_string() << endl;
-//    cout << (*exp_res.N).to_string()  << endl;
-    Large_Number a;
-    a = a.generate_random_number();
-    cout << a.to_string()  << endl;
+	//startAllTestes();
+
+	//long long q;
+	//cin >> q;
+	//while (q)
+	//{
+	//	cout << "phi:" << phi(q) << endl;
+	//	cout << "lambda:" << lambda(q) << endl;
+	//	cin >> q;
+	//}
+
+	//cout << p_h_tests() << endl;
+	/*Primal_1();
+	long long n = 23423423423423;
+	pollard_rho(n);*/
 	return 0;
 }
