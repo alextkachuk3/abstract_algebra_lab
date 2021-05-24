@@ -12,7 +12,6 @@
 #include <iomanip>
 #include <algorithm>
 #include <random>
-#include <cstdlib>
 using namespace std;
 
 class Large_Number {
@@ -20,6 +19,8 @@ public:
     vector<unsigned int> value;
 
     const Large_Number *N;
+
+    const string N_str = "57970cd7e29336813af";
 
     Large_Number multiply_by_digit(unsigned int digit);
 
@@ -73,7 +74,7 @@ public:
 
     Large_Number modInverse();
 
-    static Large_Number generate_random_number();
+    Large_Number generate_random_number();
 
     Large_Number wholePart(Large_Number a, Large_Number b);
 
