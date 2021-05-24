@@ -25,22 +25,6 @@ void startAllTestes()
 }
 int main()
 {	
-	//startAllTestes();
-
-	//long long q;
-	//cin >> q;
-	//while (q)
-	//{
-	//	cout << "phi:" << phi(q) << endl;
-	//	cout << "lambda:" << lambda(q) << endl;
-	//	cin >> q;
-	//}
-
-	//cout << p_h_tests() << endl;
-	long long n = 23423423423423;
-	// Primal_1();
-	
-	pollard_rho(n);
-	//std::cout << Large_Number(10) / Large_Number(5);
+	startAllTestes();
 	return 0;
 }
