@@ -64,6 +64,10 @@ public:
 
     bool operator==(const Large_Number &other) const;
 
+    bool operator<=(const Large_Number& other) const;
+
+    bool operator>=(const Large_Number& other) const;
+
     Large_Number operator*(const Large_Number &other) const;
 
     Large_Number operator/(const Large_Number &other) const;

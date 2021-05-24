@@ -1,6 +1,6 @@
 #include <iostream>
-//#include "Sqrt.h"
-//#include "Large_Number.h"
+#include "Sqrt.h"
+#include "Large_Number/Large_Number.h"
 #include "phi_and_lambda.h"
 #include "pow/large_number_pow.h"
 #include "pow/test_pow.h"
@@ -10,6 +10,7 @@
 #include "Pollard_Rho.h"
 
 //#include "discrete_logarithm.cpp"
+#include "discrete_logarithm.h"
 using namespace std;
 
 void startAllTestes()
@@ -25,6 +26,25 @@ void startAllTestes()
 }
 int main()
 {	
-	startAllTestes();
+	//startAllTestes();
+	//Large_Number a(3);
+	//Large_Number b(9);
+	//Large_Number c(17);
+	//cout << DiscreteLogarithm(3,9,17).to_string();
+	//cout << (a <= b);
+	//long long q;
+	//cin >> q;
+	//while (q)
+	//{
+	//	cout << "phi:" << phi(q) << endl;
+	//	cout << "lambda:" << lambda(q) << endl;
+	//	cin >> q;
+	//}
+
+	//cout << p_h_tests() << endl;
+	//long long n = 23423423423423;
+	//pollard_rho(n);*/
+	//std::cout << (Large_Number(100) / Large_Number(50)).to_string();
+
 	return 0;
 }
