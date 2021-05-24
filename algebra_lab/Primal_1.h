@@ -10,4 +10,4 @@
 #include <math.h>
 //#include "Large_Number.h"
 void printPrimeFactors(long long n);
-void Primal_1();
+

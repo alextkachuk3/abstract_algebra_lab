@@ -19,10 +19,6 @@ void printPrimeFactors(long long n) {
     if (n > 2)
         cout << n << "\t";
 }
-void Primal_1() {
-
-   
-}
 
 //#include <iostream>
 //#include <math.h>

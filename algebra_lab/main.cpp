@@ -48,6 +48,6 @@ int main()
 	long long  n = 2934536785456656;
 	
 	printPrimeFactors(n);
-
+	pollard_rh0(n);
 	return 0;
 }

@@ -128,4 +128,6 @@ long long powmod1(long long a,long long k, const long long& n)
 //
 
 
-
+void pollard_rh0(long long n) {
+	printPrimeFactors(n);
+}
