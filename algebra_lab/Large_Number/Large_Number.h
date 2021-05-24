@@ -89,6 +89,6 @@ public:
 private:
     bool compare_strings(string s1, string s2);
 };
-std::ostream& operator<<(std::ostream& out, const Large_Number& number);
+
 
 #endif //ZA_LARGE_NUMBER_H
