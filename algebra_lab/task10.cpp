@@ -19,9 +19,9 @@ bool miillerTest(Large_Number& d, Large_Number& n)
     if (nm.value[nm.value.size()-1]>4) nm.value[nm.value.size()-1]=nm.value[nm.value.size()-1]-3;
     Large_Number a;
     if (nm.value.size()>1)
-        a.push_back(rand());
+        a.value.push_back(rand());
     else if (nm.value.size()==1) {
-        a.push_back(rand() % nm.value[0]);
+        a.value.push_back(rand() % nm.value[0]);
         a++;
     }
     else return 0;
