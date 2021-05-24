@@ -313,7 +313,8 @@ Large_Number Large_Number::operator-=(const Large_Number &other) {
 
 Large_Number Large_Number::operator%(const Large_Number &other) const {
 
-    auto quotient = *this / other;
+    auto temp = *this;
+    Large_Number quotient = temp.wholePart(other,temp);
     auto product = quotient * other;
     return *this - product;
 
