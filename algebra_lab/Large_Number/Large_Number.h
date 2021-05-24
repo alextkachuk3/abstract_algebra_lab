@@ -42,6 +42,8 @@ public:
 
     Large_Number(const Large_Number &other);
 
+    Large_Number(string num, string mod);
+
     void setN(string s);
 
     Large_Number operator+(const Large_Number &other) const;
@@ -85,6 +87,6 @@ public:
 private:
     bool compare_strings(string s1, string s2);
 };
-std::ostream& operator<<(std::ostream& out, const Large_Number& number);
+
 
 #endif //ZA_LARGE_NUMBER_H
