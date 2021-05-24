@@ -1,12 +1,13 @@
 #include <iostream>
 #include <map>
 #include <math.h>
-#include "Large_Number.h"
+#include "Large_Number/Large_Number.h"
+#include "Sqrt.h"
 #include <stdio.h>
 #include <stdlib.h>
 //#include "discrete_logarithm.h"
 //#include "large_number_pow.h"
-//#include "discrete_logarithm.h"
+#include "discrete_logarithm.h"
 
 // a^x = b(mod m)
 //returns x
@@ -40,64 +41,32 @@ Large_Number DiscreteLogarithmBsGs(Large_Number& a, Large_Number& b, const  Larg
         //cout<<res<<" "<<int_to_hex(res)<<endl;
     }// an = (an * a) % m;
 
-    map<long long, long long> vals;
-    Large_Number cur = an;
-    for (long long i = 1; i <= std::stol(n.to_string(), nullptr, 16); ++i)//baby
-    {
-        if (!vals.count(std::stol(cur.to_string(), nullptr, 16)))
-            vals[std::stol(cur.to_string(), nullptr, 16)] = i;
-        long long num_an = std::stol(an.to_string(), nullptr, 16);
-        long long num_cur = std::stol(cur.to_string(), nullptr, 16);
-        long long res = (num_cur * num_an) % num_m;
-        cur = Large_Number(int_to_hex(res));
-        //cout << cur.to_string();
+Large_Number DiscreteLogarithm(Large_Number a, Large_Number b, Large_Number m) {
+    //a %= m, b %= m;//doesent work
+    //Large_Number n (STonelliSQRT(m,2) + 1);//doesnt work
+    Large_Number n(sqrt (std::stol(m.to_string(), nullptr, 16) + 1));
+    //cout << n.to_string();
+
+    Large_Number an = 1;
+    for (Large_Number i = 0; i < n; ++i)
+        an = (an * 1ll * a) % m;
+
+    map<Large_Number, Large_Number> vals;//doesnt work
+    for (Large_Number q = 0, cur = b; q <= n; ++q) {
+        vals[cur] = q;
+        cur = (cur * 1ll * a) % m;
     }
-    //cur = b;
-    Large_Number cur1 = b;
-    for (long long i = 0; i <= std::stol(n.to_string(), nullptr, 16); ++i)
-    {
-        if (vals.count(std::stol(cur1.to_string(), nullptr, 16)))
-        {
-            long long res = vals[std::stol(cur1.to_string(), nullptr, 16)] * std::stol(n.to_string(), nullptr, 16) - i;
-            //int ans = vals[cur] * n - i;
-            Large_Number ans = Large_Number(int_to_hex(res));
-            //cout << ans.to_string();
-            //cout << res;
-            if (ans < m)
-                return ans;
+
+    for (Large_Number p = 1, cur = 1; p <= n; ++p) {
+        cur = (cur * 1ll * an) % m;
+        if (vals.count(cur)) {
+            Large_Number ans = n * p - vals[cur];
+            return ans;
         }
-        long long res = (std::stol(cur1.to_string(), nullptr, 16) * num_a) % num_m;
-        cur1 = Large_Number(int_to_hex(res));
     }
-
-    //for (int i = 0, cur = b; i <= n; ++i) {
-    //    if (vals.count(cur)) {
-    //        int ans = vals[cur] * n - i;
-    //        if (ans < m)
-    //            return ans;
-    //    }
-    //    cur = (cur * a) % m;
-    //}
-    //map<int, int> vals;
-    //Large_Number cur = (an);
-    //for (Large_Number i("1"); i < n + Large_Number("1"); i++);
-    //{
-    ////    if (!vals.count(cur))
-    ////        vals[cur] = i;
-    ////    cur = (cur * an) % m;
-    //}
-
-    ////for (int i = 0, cur = b; i <= n; ++i) {
-    ////    if (vals.count(cur)) {
-    ////        Large_Number ans = vals[cur] * n - i;
-    ////        if (ans < m)
-    ////            return ans;
-    ////    }
-    ////    cur = (cur * a) % m;
-    ////}
-    return Large_Number("-1");
+    return -1;
 }
-int solve(int a, int b, int m) {
+int DiscreteLogarithm(int a, int b, int m) {
     //cout << m;
     int n = (int)sqrt(m + .0) + 1;
     //cout << n;

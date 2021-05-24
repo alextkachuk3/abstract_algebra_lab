@@ -1,5 +1,5 @@
 #pragma once
-//#include "Large_Number.h"
+#include "Large_Number/Large_Number.h"
 Large_Number pow(Large_Number base, Large_Number exponent, Large_Number modulus);
 Large_Number powOfTwo(Large_Number x);
 Large_Number gcd(Large_Number a, Large_Number b);
