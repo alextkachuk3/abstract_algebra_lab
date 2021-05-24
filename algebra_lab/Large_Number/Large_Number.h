@@ -35,8 +35,10 @@ public:
     Large_Number();
 
     Large_Number(unsigned int number);
-
+    Large_Number(unsigned int number, string mod);
     Large_Number(string s);
+
+    Large_Number(string num, string mod);
 
     Large_Number(string s,bool isN);
 
