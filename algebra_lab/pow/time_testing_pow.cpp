@@ -16,7 +16,7 @@ namespace ttp
 		while (time < maxTime)
 		{
 			time = powTesting(number, currentExp, modulus, numberOfOperations);
-			currentExp *= 2;
+			currentExp = currentExp*2;
 		}
 		
 		std::cout << "\nTesting is finished." << std::endl;

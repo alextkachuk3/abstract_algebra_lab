@@ -80,6 +80,7 @@ public:
     bool operator<(int i);
 
     std::string to_string() const;
+    friend std::ostream& operator<<(std::ostream& out, const Large_Number& number);
 
 private:
     bool compare_strings(string s1, string s2);

@@ -112,45 +112,45 @@ void TestDecomposExp() {
 
 void TestLength() {
 	// base 2
-	ASSERT_EQUAL(length(Number(31), Number(2)), 5);
-	ASSERT_EQUAL(length(Number(32), Number(2)), 6);
-	ASSERT_EQUAL(length(Number(33), Number(2)), 6);
-	ASSERT_EQUAL(length(Number(1023), Number(2)), 10);
-	ASSERT_EQUAL(length(Number(1024), Number(2)), 11);
-	ASSERT_EQUAL(length(Number(1025), Number(2)), 11);
-	ASSERT_EQUAL(length(Number(1028476), Number(2)), 20);
-	ASSERT_EQUAL(length(Number(1048576), Number(2)), 21);
-	ASSERT_EQUAL(length(Number(1048576), Number(2)), 21);
-	ASSERT_EQUAL(length(Number(17176219484), Number(2)), 34);
-	ASSERT_EQUAL(length(Number(17179869184), Number(2)), 35);
-	ASSERT_EQUAL(length(Number(17676821184), Number(2)), 35);
+	ASSERT_EQUAL(length(Number(31), 2), 5);
+	ASSERT_EQUAL(length(Number(32), 2), 6);
+	ASSERT_EQUAL(length(Number(33), 2), 6);
+	ASSERT_EQUAL(length(Number(1023), 2), 10);
+	ASSERT_EQUAL(length(Number(1024), 2), 11);
+	ASSERT_EQUAL(length(Number(1025), 2), 11);
+	ASSERT_EQUAL(length(Number(1028476), 2), 20);
+	ASSERT_EQUAL(length(Number(1048576), 2), 21);
+	ASSERT_EQUAL(length(Number(1048576), 2), 21);
+	ASSERT_EQUAL(length(Number(17176219484), 2), 34);
+	ASSERT_EQUAL(length(Number(17179869184), 2), 35);
+	ASSERT_EQUAL(length(Number(17676821184), 2), 35);
 	// base 10
-	ASSERT_EQUAL(length(Number(41), Number(10)), 2);
-	ASSERT_EQUAL(length(Number(42), Number(10)), 2);
-	ASSERT_EQUAL(length(Number(43), Number(10)), 2);
-	ASSERT_EQUAL(length(Number(1088), Number(10)), 4);
-	ASSERT_EQUAL(length(Number(1089), Number(10)), 4);
-	ASSERT_EQUAL(length(Number(22139), Number(10)), 5);
-	ASSERT_EQUAL(length(Number(35936), Number(10)), 5);
-	ASSERT_EQUAL(length(Number(333245), Number(10)), 6);
-	ASSERT_EQUAL(length(Number(39135392), Number(10)), 8);
-	ASSERT_EQUAL(length(Number(39535382), Number(10)), 8);
-	ASSERT_EQUAL(length(Number(1406408618240), Number(10)), 13);
-	ASSERT_EQUAL(length(Number(1406408618242), Number(10)), 13);
+	ASSERT_EQUAL(length(Number(41), 10), 2);
+	ASSERT_EQUAL(length(Number(42), 10), 2);
+	ASSERT_EQUAL(length(Number(43), 10), 2);
+	ASSERT_EQUAL(length(Number(1088), 10), 4);
+	ASSERT_EQUAL(length(Number(1089), 10), 4);
+	ASSERT_EQUAL(length(Number(22139), 10), 5);
+	ASSERT_EQUAL(length(Number(35936), 10), 5);
+	ASSERT_EQUAL(length(Number(333245), 10), 6);
+	ASSERT_EQUAL(length(Number(39135392), 10), 8);
+	ASSERT_EQUAL(length(Number(39535382), 10), 8);
+	ASSERT_EQUAL(length(Number(1406408618240), 10), 13);
+	ASSERT_EQUAL(length(Number(1406408618242), 10), 13);
 	// base 16
-	ASSERT_EQUAL(length(Number(3), Number(16)), 1);
-	ASSERT_EQUAL(length(Number(52), Number(16)), 2);
-	ASSERT_EQUAL(length(Number(141), Number(16)), 2);
-	ASSERT_EQUAL(length(Number(543), Number(16)), 3);
-	ASSERT_EQUAL(length(Number(7412), Number(16)), 4);
-	ASSERT_EQUAL(length(Number(20163), Number(16)), 4);
-	ASSERT_EQUAL(length(Number(91001), Number(16)), 5);
-	ASSERT_EQUAL(length(Number(52841867194), Number(16)), 9);
-	ASSERT_EQUAL(length(Number(92841867194), Number(16)), 10);
-	ASSERT_EQUAL(length(Number(323841888194), Number(16)), 10);
-	ASSERT_EQUAL(length(Number(8198418170944), Number(16)), 11);
-	ASSERT_EQUAL(length(Number(234744323678459038), Number(16)), 15);
-	ASSERT_EQUAL(length(Number(534944623678459038), Number(16)), 15);
+	ASSERT_EQUAL(length(Number(3), 16), 1);
+	ASSERT_EQUAL(length(Number(52), 16), 2);
+	ASSERT_EQUAL(length(Number(141), 16), 2);
+	ASSERT_EQUAL(length(Number(543), 16), 3);
+	ASSERT_EQUAL(length(Number(7412), 16), 4);
+	ASSERT_EQUAL(length(Number(20163), 16), 4);
+	ASSERT_EQUAL(length(Number(91001), 16), 5);
+	ASSERT_EQUAL(length(Number(52841867194), 16), 9);
+	ASSERT_EQUAL(length(Number(92841867194), 16), 10);
+	ASSERT_EQUAL(length(Number(323841888194), 16), 10);
+	ASSERT_EQUAL(length(Number(8198418170944), 16), 11);
+	ASSERT_EQUAL(length(Number(234744323678459038), 16), 15);
+	ASSERT_EQUAL(length(Number(534944623678459038), 16), 15);
 }
 
 
