@@ -24,7 +24,9 @@ void startAllTestes()
 int main()
 {	
 	//startAllTestes();
-
+	Large_Number a(10);
+	Large_Number b(5);
+	cout << (a <= b);
 	//long long q;
 	//cin >> q;
 	//while (q)
@@ -38,6 +40,6 @@ int main()
 	/*Primal_1();
 	long long n = 23423423423423;
 	pollard_rho(n);*/
-	std::cout << Large_Number(10) / Large_Number(5);
+	std::cout << Large_Number(100) / Large_Number(50);
 	return 0;
 }

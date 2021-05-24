@@ -35,6 +35,15 @@ bool Large_Number::operator==(const Large_Number &other) const {
         return false;
     return true;
 }
+bool Large_Number::operator<=(const Large_Number& other) const
+{
+    return other > *this||other==*this;
+}
+
+bool Large_Number::operator>=(const Large_Number& other) const
+{
+    return other < *this || other == *this;
+}
 
 Large_Number Large_Number::operator+(const Large_Number &other) const {
     Large_Number result, bigger, smaller;
