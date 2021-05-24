@@ -45,27 +45,35 @@ bool Large_Number::operator>=(const Large_Number& other) const
     return other < *this || other == *this;
 }
 
-Large_Number Large_Number::operator+(const Large_Number& other) const {
+Large_Number Large_Number::operator+(const Large_Number &other) const {
     Large_Number result, bigger, smaller;
-    if (*this < other) {
+    if (other.value.size() == this->value.size() || *this < other) {
         bigger = other;
         smaller = *this;
-    }
-    else {
+    } else {
         bigger = *this;
         smaller = other;
     }
     for (int i = smaller.value.size() - 1; i >= 0; i--) {
-        int greater_index = i + this->value.size() - other.value.size();
-        unsigned int iter_res = this->value[greater_index] + other.value[i];
-        if (other.value.size() - i - 1 == result.value.size())
+        int greater_index = i + bigger.value.size() - smaller.value.size();
+        unsigned int iter_res = bigger.value[greater_index] + smaller.value[i];
+        if (smaller.value.size() - i - 1 == result.value.size())
             result.value.insert(result.value.begin(), iter_res);
         else {
             result.value[0] += iter_res;
         }
-        if (this->value[greater_index] < other.value[i])
-            result.value.insert(result.value.begin(), (unsigned int)(1));
+        if (bigger.value[greater_index] / 2 + smaller.value[i] / 2 >
+            (smaller.value[i] + bigger.value[greater_index]) / 2)
+            result.value.insert(result.value.begin(), (unsigned int) (1));
     }
+    for (int i = bigger.value.size() - smaller.value.size() - 1; i >= 0; i--) {
+        if (result.value[0] == (unsigned int) (1) && i == bigger.value.size() - smaller.value.size() - 1) {
+            result.value[0] += bigger.value[i];
+        } else {
+            result.value.insert(result.value.begin(), bigger.value[i]);
+        }
+    }
+    result.modN();
     return result;
 }
 

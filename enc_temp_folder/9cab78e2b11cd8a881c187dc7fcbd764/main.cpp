@@ -26,7 +26,25 @@ void startAllTestes()
 }
 int main()
 {	
-	startAllTestes();
+	//startAllTestes();
+	//Large_Number a(3);
+	//Large_Number b(9);
+	//Large_Number c(17);
+	//cout << DiscreteLogarithm(3,9,17).to_string();
+	//cout << (a <= b);
+	//long long q;
+	//cin >> q;
+	//while (q)
+	//{
+	//	cout << "phi:" << phi(q) << endl;
+	//	cout << "lambda:" << lambda(q) << endl;
+	//	cin >> q;
+	//}
+
+	//cout << p_h_tests() << endl;
+	//long long n = 23423423423423;
+	//pollard_rho(n);*/
+	//std::cout << (Large_Number(100) / Large_Number(50)).to_string();
 
 	return 0;
 }
