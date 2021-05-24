@@ -26,28 +26,10 @@ void startAllTestes()
 }
 int main()
 {	
-	//startAllTestes();
-	//Large_Number a(3);
-	//Large_Number b(9);
-	//Large_Number c(17);
-	//cout << DiscreteLogarithm(3,9,17).to_string();
-	//cout << (a <= b);
-	//long long q;
-	//cin >> q;
-	//while (q)
-	//{
-	//	cout << "phi:" << phi(q) << endl;
-	//	cout << "lambda:" << lambda(q) << endl;
-	//	cin >> q;
-	//}
+	startAllTestes();
+	ln::Number number(12, "43"), exp(5, "43");
+	std::cout << ln::powNumber(number, exp) << std::endl;
+	std::cout << ln::powNaive(number, exp) << std::endl;
 
-	//cout << p_h_tests() << endl;
-	
-	//std::cout << (Large_Number(100) / Large_Number(50)).to_string();
-
-	long long  n = 2934536785456656;
-	
-	printPrimeFactors(n);
-	pollard_rh0(n);
 	return 0;
 }

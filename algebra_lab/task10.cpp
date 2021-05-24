@@ -1,3 +1,4 @@
+
 //#include "task10.h"
 //Large_Number power(Large_Number x, Large_Number y, Large_Number p)
 //{
@@ -51,3 +52,4 @@
 //
 //    return true;
 //}
+

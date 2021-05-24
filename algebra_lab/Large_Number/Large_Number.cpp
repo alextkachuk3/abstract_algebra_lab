@@ -45,12 +45,13 @@ bool Large_Number::operator>=(const Large_Number& other) const
     return other < *this || other == *this;
 }
 
-Large_Number Large_Number::operator+(const Large_Number &other) const {
+Large_Number Large_Number::operator+(const Large_Number& other) const {
     Large_Number result, bigger, smaller;
-    if (other.value.size() == this->value.size() || *this < other) {
+    if (*this < other) {
         bigger = other;
         smaller = *this;
-    } else {
+    }
+    else {
         bigger = *this;
         smaller = other;
     }
@@ -62,18 +63,9 @@ Large_Number Large_Number::operator+(const Large_Number &other) const {
         else {
             result.value[0] += iter_res;
         }
-        if (bigger.value[greater_index] / 2 + smaller.value[i] / 2 >
-            (smaller.value[i] + bigger.value[greater_index]) / 2)
-            result.value.insert(result.value.begin(), (unsigned int) (1));
+        if (this->value[greater_index] < other.value[i])
+            result.value.insert(result.value.begin(), (unsigned int)(1));
     }
-    for (int i = bigger.value.size() - smaller.value.size() - 1; i >= 0; i--) {
-        if (result.value[0] == (unsigned int) (1) && i == bigger.value.size() - smaller.value.size() - 1) {
-            result.value[0] += bigger.value[i];
-        } else {
-            result.value.insert(result.value.begin(), bigger.value[i]);
-        }
-    }
-    result.modN();
     return result;
 }
 
@@ -271,16 +263,16 @@ Large_Number Large_Number::multiply_by_digit(unsigned int digit) {
 }
 
 
-Large_Number Large_Number::operator*(const Large_Number &other) const {
+Large_Number Large_Number::operator*(const Large_Number& other) const {
     Large_Number result;
-    result.value.push_back((unsigned int) 0);
+    result.value.push_back((unsigned int)0);
     for (int i = other.value.size() - 1; i >= 0; i--) {
         unsigned int digit = other.value[i];
         auto temp = *this;
         Large_Number adding = temp.multiply_by_digit(digit);
         int number_shifts = other.value.size() - 1 - i;
         while (number_shifts > 0) {
-            adding.value.push_back((unsigned int) 0);
+            adding.value.push_back((unsigned int)0);
             number_shifts--;
         }
         adding.modN();
