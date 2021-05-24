@@ -10,6 +10,8 @@
 #include <string>
 #include <sstream>
 #include <iomanip>
+#include <algorithm>
+#include <random>
 using namespace std;
 
 class Large_Number {
@@ -27,13 +29,18 @@ public:
     const unsigned int check = pow(2, 31);
 
 public:
+    // Set your N, otherwise you will get a default value: 57970cd7e29336813af
     Large_Number();
 
     Large_Number(unsigned int number);
 
     Large_Number(string s);
 
+    Large_Number(string s,bool isN);
+
     Large_Number(const Large_Number &other);
+
+    void setN(string s);
 
     Large_Number operator+(const Large_Number &other) const;
 
@@ -61,9 +68,11 @@ public:
 
     Large_Number operator++(int);
 
-    Large_Number gcdExtended(Large_Number a, Large_Number b, Large_Number *indexA, Large_Number *indexB);
+    Large_Number gcdExtended(Large_Number a, Large_Number b, Large_Number &indexA, Large_Number &indexB, bool &indexA_isNeg,bool &indexB_isNeg);
 
     Large_Number modInverse();
+
+    Large_Number generate_random_number();
 
     Large_Number wholePart(Large_Number a, Large_Number b);
 

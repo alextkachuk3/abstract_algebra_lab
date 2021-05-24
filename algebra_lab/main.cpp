@@ -1,4 +1,4 @@
-﻿#include <iostream>
+#include <iostream>
 //#include "Sqrt.h"
 //#include "Large_Number.h"
 #include "phi_and_lambda.h"
@@ -38,6 +38,5 @@ int main()
 	/*Primal_1();
 	long long n = 23423423423423;
 	pollard_rho(n);*/
-	
 	return 0;
 }
