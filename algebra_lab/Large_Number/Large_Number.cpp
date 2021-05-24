@@ -423,3 +423,8 @@ Large_Number::Large_Number(string num, string mod) {
     *this = Large_Number(num);
     setN(mod);
 }
+std::ostream& operator<<(std::ostream& out, const Large_Number& number)
+{
+    out << number.to_string();
+    return out;
+}
