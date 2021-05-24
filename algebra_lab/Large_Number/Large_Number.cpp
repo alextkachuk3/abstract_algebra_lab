@@ -117,13 +117,17 @@ Large_Number Large_Number::operator++() {
 Large_Number Large_Number::modInverse() {
     Large_Number indexA, indexB, res;
     Large_Number one(1);
+    auto temp = *this;
     bool indexA_isNeg, indexB_isNeg = false;
     Large_Number g = Large_Number::gcdExtended(*this, *this->N, indexA, indexB,indexA_isNeg,indexB_isNeg);
     if (!(g == one)) {
         res.value.push_back((unsigned int) (0));
         return res;
     } else {
-        res = *N - indexA;
+        if(indexA*temp == one)
+            res = indexA;
+        else
+            res = *N - indexA;
     }
     return res;
 }
@@ -133,6 +137,8 @@ Large_Number Large_Number::gcdExtended(Large_Number a, Large_Number b, Large_Num
     const Large_Number one(1);
     if (a == zero) {
         indexA = zero;
+        indexA_isNeg = false;
+        indexB_isNeg = false;
         indexB = one;
         return b;
     }
@@ -210,9 +216,9 @@ Large_Number Large_Number::wholePart(Large_Number a, Large_Number b) {
 
 Large_Number Large_Number::operator/(const Large_Number &other) const {
     Large_Number result, x;
-    auto temp = other;
-    x = temp.modInverse();
-    result = *this * x;
+    auto temp = *this;
+    result = temp.wholePart(other,temp);
+    result.modN();
     return result;
 }
 
@@ -402,9 +408,4 @@ Large_Number Large_Number::generate_random_number() {
         our_number += hex_digits[dist1(rd)%16];
     }
     return Large_Number(our_number);
-}
-std::ostream& operator<<(std::ostream& out, const Large_Number& number)
-{
-    out << number.to_string();
-    return out;
 }
