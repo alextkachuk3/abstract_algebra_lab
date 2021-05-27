@@ -4,7 +4,7 @@
 
 #include "FiniteFieldElement.hpp"
 
-FiniteFieldElement::FiniteFieldElement(int value, const std::shared_ptr<EllipticCurve> &ptr) {
+FiniteFieldElement::FiniteFieldElement(Large_Number value, const std::shared_ptr<EllipticCurve> &ptr) {
     ec_ = ptr;
     value_ = getNormalized(value);
 }
@@ -15,11 +15,11 @@ FiniteFieldElement::FiniteFieldElement(const std::shared_ptr<EllipticCurve> &ptr
 }
 
 
-int FiniteFieldElement::getNormalized(int value) const {
-    int result = value;
-
+Large_Number FiniteFieldElement::getNormalized(Large_Number value) const {
+    Large_Number result = value;
+    const Large_Number L_2(2);
     if (value < 0) {
-        result = (value % ec_->P()) + 2 * ec_->P();
+        result = (value % ec_->P()) + L_2 * ec_->P();
     }
 
     result %= ec_->P();
@@ -53,19 +53,19 @@ FiniteFieldElement FiniteFieldElement::operator/(const FiniteFieldElement &rhs) 
 }
 
 
-FiniteFieldElement FiniteFieldElement::operator+(int rhs) const {
+FiniteFieldElement FiniteFieldElement::operator+(Large_Number rhs) const {
     return FiniteFieldElement(value_ + rhs, ec_);
 }
 
-FiniteFieldElement FiniteFieldElement::operator-(int rhs) const {
+FiniteFieldElement FiniteFieldElement::operator-(Large_Number rhs) const {
     return FiniteFieldElement(value_ - rhs, ec_);
 }
 
-FiniteFieldElement FiniteFieldElement::operator*(int rhs) const {
+FiniteFieldElement FiniteFieldElement::operator*(Large_Number rhs) const {
     return FiniteFieldElement(value_ * rhs, ec_);
 }
 
-FiniteFieldElement FiniteFieldElement::operator/(int rhs) const {
+FiniteFieldElement FiniteFieldElement::operator/(Large_Number rhs) const {
     return FiniteFieldElement(value_ / rhs, ec_);
 }
 
@@ -87,24 +87,24 @@ bool FiniteFieldElement::operator!=(const FiniteFieldElement &rhs) const {
 }
 
 
-bool FiniteFieldElement::operator<(int rhs) const {
+bool FiniteFieldElement::operator<(const Large_Number& rhs) const {
     return value_ < rhs;
 }
 
-bool FiniteFieldElement::operator>(int rhs) const {
+bool FiniteFieldElement::operator>(const Large_Number& rhs) const {
     return value_ > rhs;
 }
 
-bool FiniteFieldElement::operator==(int rhs) const {
+bool FiniteFieldElement::operator==(const Large_Number& rhs) const {
     return value_ == rhs;
 }
 
-bool FiniteFieldElement::operator!=(int rhs) const {
-    return value_ != rhs;
+bool FiniteFieldElement::operator!=(const Large_Number& rhs) const {
+    return Large_Number(value_) !=  rhs;
 }
 
 std::string FiniteFieldElement::to_string() const {
-    return std::to_string(value_);
+    return value_.to_string();
 }
 
 std::ostream &operator<<(std::ostream &os, const FiniteFieldElement &element) {
@@ -112,10 +112,10 @@ std::ostream &operator<<(std::ostream &os, const FiniteFieldElement &element) {
     return os;
 }
 
-int FiniteFieldElement::inv_mod(int x, int n) const {
+Large_Number FiniteFieldElement::inv_mod(Large_Number x, Large_Number n) const {
     //n = Abs(n);
     x = x % n; // % is the remainder function, 0 <= x % n < |n|
-    int u, v, g, z;
+    Large_Number u, v, g, z;
     g = EGCD(x, n, u, v);
     if (g != 1) {
         // x and n have to be relative prime for there to exist an x^-1 mod n
@@ -126,18 +126,18 @@ int FiniteFieldElement::inv_mod(int x, int n) const {
     return z;
 }
 
-int FiniteFieldElement::EGCD(int a, int b, int &u, int &v) const {
+Large_Number FiniteFieldElement::EGCD(Large_Number a, Large_Number b, Large_Number &u, Large_Number &v) const {
     u = 1;
     v = 0;
-    int g = a;
-    int u1 = 0;
-    int v1 = 1;
-    int g1 = b;
+    Large_Number g = a;
+    Large_Number u1 = 0;
+    Large_Number v1 = 1;
+    Large_Number g1 = b;
     while (g1 != 0) {
-        int q = g / g1; // Integer divide
-        int t1 = u - q * u1;
-        int t2 = v - q * v1;
-        int t3 = g - q * g1;
+        Large_Number q = g / g1; // Integer divide
+        Large_Number t1 = u - q * u1;
+        Large_Number t2 = v - q * v1;
+        Large_Number t3 = g - q * g1;
         u = u1;
         v = v1;
         g = g1;

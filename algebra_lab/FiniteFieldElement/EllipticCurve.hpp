@@ -2,24 +2,22 @@
 #include <string>
 #include <sstream>
 
+#include "../Large_Number.h"
+
 // Еліптична крива y^2 = x^3 + Ax + B mod P
 class EllipticCurve {
 public:
 
-    // todo change type
-    EllipticCurve(int a, int b, int p);
+    EllipticCurve(const Large_Number& a, const Large_Number& b, const Large_Number& p);
 
-    // todo change type
     // Коефіцієнт Ax
-    int A() const;
+    Large_Number A() const;
 
-    // todo change type
     // Коефіцієнт B
-    int B() const;
+    Large_Number B() const;
 
-    // todo change type
     // Характеристика поля
-    int P() const;
+    Large_Number P() const;
 
 
 
@@ -31,6 +29,5 @@ public:
     friend std::ostream& operator <<(std::ostream& os, const EllipticCurve& ellipticCurve);
 
 private:
-    // todo change type
-    int a_, b_, p_;
+    Large_Number a_, b_, p_;
 };

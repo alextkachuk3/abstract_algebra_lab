@@ -4,19 +4,21 @@
 
 #include "EllipticCurve.hpp"
 
-EllipticCurve::EllipticCurve(int a, int b, int p) :
+EllipticCurve::EllipticCurve(const Large_Number& a,
+                             const Large_Number& b,
+                             const Large_Number& p) :
         a_(a), b_(b), p_(p) {}
 
 
-int EllipticCurve::A() const {
+Large_Number EllipticCurve::A() const {
     return a_;
 }
 
-int EllipticCurve::B() const {
+Large_Number EllipticCurve::B() const {
     return b_;
 }
 
-int EllipticCurve::P() const {
+Large_Number EllipticCurve::P() const {
     return p_;
 }
 
